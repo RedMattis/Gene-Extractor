@@ -1,0 +1,87 @@
+<Defs>
+
+
+  <WorkGiverDef>
+    <defName>GET_HaulToGeneExtractionVat_II</defName>
+    <label>carry to gene extraction vat</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_HaulToGrowthGeneExtractor_II</giverClass>
+    <workType>Hauling</workType>
+    <verb>fill</verb>
+    <gerund>filling</gerund>
+    <priorityInType>109</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>GET_CarryToGeneExtractionVat_II</defName>
+    <label>carry to building</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_CarryToGeneExtractor_II</giverClass>
+    <workType>Hauling</workType>
+    <verb>extract genes</verb>
+    <gerund>extracting genes from</gerund>
+    <priorityInType>90</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <canBeDoneByMechs>false</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>GET_HaulToGeneExtractionVat_III</defName>
+    <label>carry to gene extraction vat</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_HaulToGrowthGeneExtractor_III</giverClass>
+    <workType>Hauling</workType>
+    <verb>fill</verb>
+    <gerund>filling</gerund>
+    <priorityInType>109</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>GET_CarryToGeneExtractionVat_III</defName>
+    <label>carry to building</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_CarryToGeneExtractor_III</giverClass>
+    <workType>Hauling</workType>
+    <verb>extract genes</verb>
+    <gerund>extracting genes from</gerund>
+    <priorityInType>90</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <canBeDoneByMechs>false</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>GET_HaulToGeneExtractionVat_IV</defName>
+    <label>carry to gene extraction vat</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_HaulToGrowthGeneExtractor_IV</giverClass>
+    <workType>Hauling</workType>
+    <verb>fill</verb>
+    <gerund>filling</gerund>
+    <priorityInType>109</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>GET_CarryToGeneExtractionVat_IV</defName>
+    <label>carry to building</label>
+    <giverClass>GeneExtractorTiers.WorkGiver_CarryToGeneExtractor_IV</giverClass>
+    <workType>Hauling</workType>
+    <verb>extract genes</verb>
+    <gerund>extracting genes from</gerund>
+    <priorityInType>90</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <canBeDoneByMechs>false</canBeDoneByMechs>
+  </WorkGiverDef>
+
+
+
+</Defs>

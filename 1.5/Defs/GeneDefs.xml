@@ -1,0 +1,197 @@
+<Defs>
+
+  <GeneDef ParentName="GeneSleepBase">
+    <defName>GET_SleepRegular</defName>
+    <label>regular sleep</label>
+    <description>Carriers of this gene have a normal sleep need.\n\nThis is mostly useful for overriding other sleep genes.</description>
+    <iconPath>GeneTextures/GET_Gene_RegularSleeper</iconPath>
+    <displayOrderInCategory>-1</displayOrderInCategory>
+    <biostatMet>0</biostatMet>
+    <biostatCpx>1</biostatCpx>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>GET_ViolenceNormal</defName>
+    <label>violence normal</label>
+    <labelShortAdj>normal violence</labelShortAdj>
+    <description>Carriers of this gene have a normal capacity for violence.\n\nThis overrides pacifism and kill-thrist. Does not affect overall temper (e.g. aggressive)</description>
+    <iconPath>GeneTextures/GET_Gene_CapableOfViolence</iconPath>
+    <displayCategory>Violence</displayCategory>
+    <displayOrderInCategory>-1</displayOrderInCategory> 
+    <biostatMet>0</biostatMet>
+    <exclusionTags>
+      <li>KillThirst</li>
+    </exclusionTags>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneLearningBase">
+    <defName>GET_Learning_Normal</defName>
+    <label>normal study</label>
+    <description>Carriers of this gene have excellent memories and grasp new ideas quickly. They learn faster than others.</description>
+    <iconPath>GeneTextures/GET_NormalLearning</iconPath>
+    <displayOrderInCategory>0</displayOrderInCategory>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>GET_HumanLegs</defName>
+    <label>human legs</label>
+    <description>Carriers of this gene have normal legs.\n\nThis overrides many genes related to legs and the hips.</description>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <randomChosen>true</randomChosen>
+    <displayOrderInCategory>0</displayOrderInCategory>
+    <iconPath>GeneTextures/GET_Gene_HumanLegs</iconPath>
+    <exclusionTags>
+      <li>GET_Legs</li>
+			<li>Tail</li>
+      <li>Bug_BodyAttachment</li>
+			<li>taur</li>
+			<li>spiderlegs</li>
+    </exclusionTags>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+	</GeneDef>
+
+  <GeneDef ParentName="GeneBeautyBase">
+    <defName>GET_AverageApperance</defName>
+    <label>average apperance</label>
+    <description>Carriers of this gene have a tendency to an average apperance.</description>
+    <iconPath>GeneTextures/GET_AverageApperance</iconPath>
+    <displayOrderInCategory>20</displayOrderInCategory>
+    <biostatMet>0</biostatMet>
+    <biostatCpx>1</biostatCpx>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneAggressionBase">
+    <defName>GET_Aggressive_normal</defName>
+    <label>normal aggresion</label>
+    <description>Carriers of this gene don't have any particular genetic inclination either for or against hostile behaviour in social situations.</description>
+    <iconPath>GeneTextures/GET_NormalAggression</iconPath>
+    <displayOrderInCategory>0</displayOrderInCategory>
+    <biostatMet>0</biostatMet>
+    <exclusionTags>
+      <li>Aggressive</li>
+    </exclusionTags>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+    <selectionWeight>0.25</selectionWeight>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>GET_BodySizeNormal</defName>
+    <label>normal body size</label>
+    <description>Carriers of this gene tend to about the size of a baseline human.</description>
+    <displayCategory>Body_Size</displayCategory>
+    <iconPath>GeneTextures/GET_AverageSize</iconPath>
+    <exclusionTags>
+      <li>BodySize</li>
+    </exclusionTags>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <selectionWeight>0.25</selectionWeight>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+  </GeneDef>
+
+  <GeneTemplateDef ParentName="GeneChemicalBase">
+    <defName>GET_RegularAddiction</defName>
+    <label>regular {0} tolerance</label>
+    <description>Carriers are just as likely to get addicted to {0} as anyone else.\n\nGives resistance to overdoses; blame Ludeon for hard-coding that. :p\n\n.</description>
+    <iconPath>UI/Icons/Genes/Chemicals/{0}/AddictionSensitivity</iconPath>
+    <displayOrderOffset>1</displayOrderOffset>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <selectionWeight>0.1</selectionWeight>
+    <addictionChanceFactor>1</addictionChanceFactor>
+
+    <!-- <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene_Nope</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene_Nope</backgroundPathXenogenes>
+			</li>
+		</modExtensions> -->
+  </GeneTemplateDef>
+
+  <GeneDef>
+    <defName>GET_RegularBodyShape</defName>
+    <label>regular body-shape</label>
+    <description>Carriers of this gene have a somewhat human body-shape.</description>
+    <iconPath>GeneTextures/BS_RegularBodyShape</iconPath>
+		<exclusionTags>
+			<li>AG_Bodies</li>
+			<li>Bodies</li>
+			<li>Body</li>
+      <li>BS_Body</li>
+      <li>ThingDefSwap</li>
+		</exclusionTags>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <selectionWeight>0.1</selectionWeight>
+    <modExtensions>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene</backgroundPathEndogenes>
+				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene</backgroundPathXenogenes>
+        <backgroundPathArchite>GeneIcons/BS_BackArchite_1</backgroundPathArchite>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+  <GeneDef ParentName="GeneHairStyleBase">
+    <defName>GET_RegularHair</defName>
+    <label>regular-haired</label>
+    <description>Carriers of this gene have fairly regular hair.</description>
+    <iconPath>GeneTextures/GET_NormalHair</iconPath>
+    <displayOrderInCategory>56</displayOrderInCategory>
+  </GeneDef>
+
+</Defs>

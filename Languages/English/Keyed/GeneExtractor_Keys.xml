@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <GET_DeactivateOverdrive>Deactivate Ovedrive</GET_DeactivateOverdrive>
+  <GET_DeactivateOverdriveDesc>Deactivate overdrive, returning power and nutrition consumption to normal levels.</GET_DeactivateOverdriveDesc>
+  <GET_ActivateOverdrive>Overdrive</GET_ActivateOverdrive>
+  <GET_ActivateOverdriveDesc>Put the extraction vat into overdrive, extracting twice as fast, but consuming 4x the power and 3x nutrition.</GET_ActivateOverdriveDesc>
+  <GET_TargetGene>Target Gene: {0}</GET_TargetGene>
+  <GET_SelectGene>Select Gene</GET_SelectGene>
+  <GET_SelectGeneDesc>Select a specific gene for extraction.</GET_SelectGeneDesc>
+  <GET_AllVatsCanTargetGenes>All Vats can Target specific genes.</GET_AllVatsCanTargetGenes>
+</LanguageData>

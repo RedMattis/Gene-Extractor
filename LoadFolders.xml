@@ -1,0 +1,15 @@
+<loadFolders>
+  <v1.4>
+    <li>/</li>
+    <li>1.4</li>
+    <li IfModActive="vanillaexpanded.vnutriente">1.4/Mods/VNPE</li>
+    <li IfModNotActive="RedMattis.BigSmall.Core">1.4/Mods/NoBS</li>
+  </v1.4>
+  <v1.5>
+    <li>/</li>
+    <li>1.5</li>
+    <li IfModActive="vanillaexpanded.vnutriente">1.5/Mods/VNPE</li>
+    <li IfModNotActive="RedMattis.BigSmall.Core">1.5/Mods/NoBS</li>
+    <li IfModActive="RedMattis.BigSmall.Core">1.5/Mods/BigAndSmall</li>
+  </v1.5>
+</loadFolders>

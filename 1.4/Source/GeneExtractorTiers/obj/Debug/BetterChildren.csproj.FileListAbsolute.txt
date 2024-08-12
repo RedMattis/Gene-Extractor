@@ -1,0 +1,12 @@
+C:\Steam\steamapps\common\RimWorld\Mods\BetterChildren\Assemblies\BetterChildren.dll
+C:\Steam\steamapps\common\RimWorld\Mods\BetterChildren\Source\BetterChildren\obj\Debug\BetterChildren.csproj.AssemblyReference.cache
+C:\Steam\steamapps\common\RimWorld\Mods\BetterChildren\Source\BetterChildren\obj\Debug\BetterChildren.csproj.CoreCompileInputs.cache
+C:\Steam\steamapps\common\RimWorld\Mods\BetterChildren\Source\BetterChildren\obj\Debug\BetterChildren.dll
+C:\Games\Steam\steamapps\workshop\content\294100\2899562773\Assemblies\BetterChildren.dll
+C:\Games\Steam\steamapps\workshop\content\294100\2899562773\Source\BetterChildren\obj\Debug\BetterChildren.csproj.AssemblyReference.cache
+C:\Games\Steam\steamapps\workshop\content\294100\2899562773\Source\BetterChildren\obj\Debug\BetterChildren.csproj.CoreCompileInputs.cache
+C:\Games\Steam\steamapps\workshop\content\294100\2899562773\Source\BetterChildren\obj\Debug\BetterChildren.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Better Children Skill Learning\Assemblies\BetterChildren.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Better Children Skill Learning\Source\BetterChildren\obj\Debug\BetterChildren.csproj.AssemblyReference.cache
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Better Children Skill Learning\Source\BetterChildren\obj\Debug\BetterChildren.csproj.CoreCompileInputs.cache
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Better Children Skill Learning\Source\BetterChildren\obj\Debug\BetterChildren.dll

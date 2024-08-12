@@ -1,0 +1,9 @@
+<LanguageData>
+  <GET_GeneExtractorTiers>Gene Extractor Tiers</GET_GeneExtractorTiers>
+  <GET_MultipackChance>Multipack Chance</GET_MultipackChance>
+  <GET_MegapackChance>Megapack Chance</GET_MegapackChance>
+
+  <GET_ExtractionTime>Extraction Time</GET_ExtractionTime>
+  <GET_NutritionUseMultiplier>Nutrition Use Multiplier</GET_NutritionUseMultiplier>
+  <GET_GenesRegrowingTime>Genes Regrowing Time</GET_GenesRegrowingTime>
+</LanguageData>

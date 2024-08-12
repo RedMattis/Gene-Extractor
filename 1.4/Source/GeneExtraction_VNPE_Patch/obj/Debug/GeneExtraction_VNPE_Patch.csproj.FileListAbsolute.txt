@@ -1,0 +1,5 @@
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Mods\VanillaNutrientPasteExpanded\Assemblies\GeneExtraction_VNPE_Patch.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtraction_VNPE_Patch\obj\Debug\GeneExtraction_VNPE_Patch.csproj.AssemblyReference.cache
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtraction_VNPE_Patch\obj\Debug\GeneExtraction_VNPE_Patch.csproj.CoreCompileInputs.cache
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtraction_VNPE_Patch\obj\Debug\GeneExtraction_VNPE_Patch.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Mods\VNPE\Assemblies\GeneExtraction_VNPE_Patch.dll

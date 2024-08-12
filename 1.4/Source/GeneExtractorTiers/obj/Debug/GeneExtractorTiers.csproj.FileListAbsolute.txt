@@ -1,0 +1,4 @@
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Assemblies\GeneExtractorTiers.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtractorTiers\obj\Debug\GeneExtractorTiers.csproj.CoreCompileInputs.cache
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtractorTiers\obj\Debug\GeneExtractorTiers.dll
+C:\Games\Steam\steamapps\common\RimWorld\Mods\Gene Extractor\Source\GeneExtractorTiers\obj\Debug\GeneExtractorTiers.csproj.AssemblyReference.cache

@@ -1,0 +1,138 @@
+<Defs>
+
+  <ThingDef ParentName="BuildingBase" Name="GET_GeneExtractor_II">
+    <defName>GET_GeneExtractor_II</defName>
+    <label>gene extraction vat</label>
+    <description>An automated surgery machine that can extract a person's genes and create a genepack from them. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands"</description>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_II</thingClass>
+    <containedPawnsSelectable>true</containedPawnsSelectable>
+    <passability>Impassable</passability>
+    <fillPercent>0.5</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <tickerType>Normal</tickerType>
+    <thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
+    <graphicData>
+      <texPath>GET_Extractor</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3, 2)</drawSize>
+      <shadowData>
+        <volume>(1.7, 0.8, 1.7)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(3, 2)</size>
+    <rotatable>true</rotatable>
+    <canOverlapZones>false</canOverlapZones>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0, 0, -1)</interactionCellOffset>
+    <defaultPlacingRot>North</defaultPlacingRot> <!--I accidentally coded it upside down. :D -->
+    <designationCategory>Biotech</designationCategory>
+    <uiOrder>2100</uiOrder>
+    <inspectorTabs>
+      <li>ITab_BiosculpterNutritionStorage</li>
+      <li>ITab_Genes</li>
+    </inspectorTabs>
+    <researchPrerequisites>
+      <li>Xenogermination</li>
+    </researchPrerequisites>
+    <building>
+      <buildingTags>
+        <li>Biotech</li>
+      </buildingTags>
+      <ai_chillDestination>false</ai_chillDestination>
+      <haulToContainerDuration>120</haulToContainerDuration>
+      <fixedStorageSettings>
+        <filter>
+          <categories>
+            <li>Foods</li>
+          </categories>
+          <specialFiltersToDisallow>
+            <li>AllowPlantFood</li>
+          </specialFiltersToDisallow>
+        </filter>
+      </fixedStorageSettings>
+      <defaultStorageSettings>
+        <filter>
+          <categories>
+            <li>Foods</li>
+          </categories>
+          <disallowedCategories>
+            <li>EggsFertilized</li>
+          </disallowedCategories>
+          <disallowedThingDefs>
+            <li>InsectJelly</li>
+            <li>MealLavish</li>
+            <li>MealLavish_Veg</li>
+            <li>MealLavish_Meat</li>
+            <li>HemogenPack</li>
+            <li>Chocolate</li>
+          </disallowedThingDefs>
+        </filter>
+      </defaultStorageSettings>
+    </building>
+    <statBases>
+      <MaxHitPoints>600</MaxHitPoints>
+      <WorkToBuild>12000</WorkToBuild>
+      <Mass>90</Mass>
+      <Flammability>0.1</Flammability>
+    </statBases>
+    <costList>
+      <Steel>200</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>200</basePowerConsumption>
+        <idlePowerDraw>80</idlePowerDraw>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneExtractor_II">
+    <defName>GET_GeneExtractor_III</defName>
+    <label>archite gene extraction vat</label>
+    <description>An automated surgery machine that can extract a person's genes and create a genepack from them. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThis version can extract archite genes.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands"</description>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_III</thingClass>
+
+    <graphicData>
+      <texPath>GET_Extractor_archite</texPath>
+    </graphicData>
+
+    <researchPrerequisites Inherit="False">
+      <li>Archogenetics</li>
+    </researchPrerequisites>
+    <costList Inherit="False">
+      <Steel>220</Steel>
+      <ComponentSpacer>9</ComponentSpacer>
+      <ArchiteCapsule>1</ArchiteCapsule>
+    </costList>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneExtractor_II">
+    <defName>GET_GeneExtractor_IV</defName>
+    <label>archite gene extraction vat II</label>
+    <description>An automated surgery machine that can extract a person's genes and create a genepack from them, this version operates at 250% of the speed a regular archite extractor, but requires an AI persona core. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThis version can extract archite genes.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands"</description>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_IV</thingClass>
+
+    <graphicData>
+      <texPath>GET_Extractor_archite2</texPath>
+    </graphicData>
+
+    <researchPrerequisites Inherit="False">
+      <li>Archogenetics</li>
+    </researchPrerequisites>
+    <costList Inherit="False">
+      <Steel>220</Steel>
+      <ComponentSpacer>12</ComponentSpacer>
+      <ArchiteCapsule>2</ArchiteCapsule>
+      <AIPersonaCore>1</AIPersonaCore>
+    </costList>
+  </ThingDef>
+</Defs>

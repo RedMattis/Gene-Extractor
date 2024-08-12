@@ -1,0 +1,10 @@
+<LanguageData>
+  <GET_GeneExtractorTiers>Gene Extractor Tiers</GET_GeneExtractorTiers>
+  <GET_MultipackChance>Multipack Chance</GET_MultipackChance>
+  <GET_MegapackChance>Megapack Chance</GET_MegapackChance>
+  <GET_SplitZeroCostChance>Chance to seperate zero-cost genes to own pack</GET_SplitZeroCostChance>
+  <GET_DidSplitZeroCost>A genepack was successfully split during extraction to seperate non-metabolic genes from the rest.</GET_DidSplitZeroCost>
+  <GET_ExtractionTime>Extraction Time</GET_ExtractionTime>
+  <GET_NutritionUseMultiplier>Nutrition Use Multiplier</GET_NutritionUseMultiplier>
+  <GET_GenesRegrowingTime>Genes Regrowing Time</GET_GenesRegrowingTime>
+</LanguageData>

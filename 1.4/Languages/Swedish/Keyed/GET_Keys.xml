@@ -1,0 +1,10 @@
+<LanguageData>
+  <!--For the lulz.-->
+  <GET_GeneExtractorTiers>Geneextraktionsnivåer</GET_GeneExtractorTiers>
+  <GET_MultipackChance>Multipaketchans</GET_MultipackChance>
+  <GET_MegapackChance>Megapaketchans</GET_MegapackChance>
+
+  <GET_ExtractionTime>Extraktionstid</GET_ExtractionTime>
+  <GET_NutritionUseMultiplier>Näringsanvändningsmultiplikator</GET_NutritionUseMultiplier>
+  <GET_GenesRegrowingTime>Tid för genåterväxt</GET_GenesRegrowingTime>
+</LanguageData>
