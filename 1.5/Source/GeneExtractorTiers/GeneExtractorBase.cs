@@ -894,6 +894,7 @@ namespace GeneExtractorTiers
                         }
                         hediff.TryGetComp<HediffComp_Disappears>().ticksToDisappear = Settings.RegrowTimeInTicks;
                     }
+                    Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, geneList.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
                 }
             }
             ticksRemaining = ExtractionTimeInTicks;
