@@ -8,9 +8,7 @@
     <displayOrderInCategory>-1</displayOrderInCategory>
     <biostatMet>0</biostatMet>
     <biostatCpx>1</biostatCpx>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
   </GeneDef>
 
@@ -26,9 +24,7 @@
     <exclusionTags>
       <li>KillThirst</li>
     </exclusionTags>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
   </GeneDef>
 
@@ -40,9 +36,7 @@
     <displayOrderInCategory>0</displayOrderInCategory>
     <biostatCpx>1</biostatCpx>
     <biostatMet>0</biostatMet>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
   </GeneDef>
 
@@ -62,9 +56,7 @@
 			<li>taur</li>
 			<li>spiderlegs</li>
     </exclusionTags>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
 	</GeneDef>
 
@@ -76,9 +68,7 @@
     <displayOrderInCategory>20</displayOrderInCategory>
     <biostatMet>0</biostatMet>
     <biostatCpx>1</biostatCpx>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
   </GeneDef>
 
@@ -92,9 +82,7 @@
     <exclusionTags>
       <li>Aggressive</li>
     </exclusionTags>
-    <modExtensions>
-			
-		</modExtensions>
+
     <selectionWeight>0.25</selectionWeight>
   </GeneDef>
 
@@ -110,9 +98,7 @@
     <biostatCpx>1</biostatCpx>
     <biostatMet>0</biostatMet>
     <selectionWeight>0.25</selectionWeight>
-    <modExtensions>
-			
-		</modExtensions>
+
   </GeneDef>
 
   <GeneTemplateDef ParentName="GeneChemicalBase">
@@ -145,13 +131,13 @@
 			<li>Body</li>
       <li>BS_Body</li>
       <li>BS_BodySwap</li>
+      <li>taur</li>
+      <li>ExtraArms</li>
 		</exclusionTags>
     <biostatCpx>1</biostatCpx>
     <biostatMet>0</biostatMet>
     <selectionWeight>0.1</selectionWeight>
-    <modExtensions>
-			
-		</modExtensions>
+
 	</GeneDef>
 
   <GeneDef ParentName="GeneHairStyleBase">
