@@ -14,8 +14,8 @@ namespace GeneExtractorTiers
     // Props
     public class CompProperties_GeneNode : CompProperties
     {
-        public List<GeneDef> geneList = new();
-        public List<GeneSetList> geneSetList = new();
+        public List<GeneDef> geneList = [];
+        public List<GeneSetList> geneSetList = [];
         public string Faction = "LoS_ViperFamily";
         public int FactionGoodwill = 10;
 
@@ -27,7 +27,7 @@ namespace GeneExtractorTiers
 
     public class GeneSetList
     {
-        public List<GeneDef> geneList = new();
+        public List<GeneDef> geneList = [];
     }
 
     internal class Comp_GeneNode : ThingComp, IThingHolder
@@ -105,7 +105,7 @@ namespace GeneExtractorTiers
             foreach (GeneDef gene in Props.geneList)
             {
                 Genepack genepack = (Genepack)ThingMaker.MakeThing(ThingDefOf.Genepack);
-                genepack.Initialize(new List<GeneDef> { gene });
+                genepack.Initialize([gene]);
                 innerContainer.TryAdd(genepack);
             }
             foreach (GeneSetList geneSet in Props.geneSetList)

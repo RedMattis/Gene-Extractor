@@ -386,7 +386,7 @@ namespace GeneExtractorTiers
                 icon = InsertPawnTex,
                 action = delegate
                 {
-                    List<FloatMenuOption> list = new List<FloatMenuOption>();
+                    List<FloatMenuOption> list = [];
                     foreach (Pawn item in Map.mapPawns.AllPawnsSpawned)
                     {
                         Pawn pawn = item;
@@ -744,7 +744,7 @@ namespace GeneExtractorTiers
             List<Thing> thingsOnMap = Map.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
 
             // i = 1 in singlepack. in multipcak.
-            Dictionary<GeneDef, GeneState> geneLookup = new Dictionary<GeneDef, GeneState>();
+            Dictionary<GeneDef, GeneState> geneLookup = [];
 
             foreach (Thing thing in thingsOnMap)
             {
@@ -757,7 +757,7 @@ namespace GeneExtractorTiers
                         {
                             geneLookup[geneDef] = GeneState.Multipack;
                         }
-                        else
+                        else if (genesInPack == 1)
                         {
                             geneLookup[geneDef] = GeneState.SinglePack;
                         }
@@ -810,7 +810,7 @@ namespace GeneExtractorTiers
                 var almostNewGenes = pickableGenes.Where(x => !existingGenes.ContainsKey(x) || (existingGenes.ContainsKey(x) && existingGenes[x] == GeneState.Multipack)).ToList();
                 var pickableNewish = newGenes.Concat(almostNewGenes).ToHashSet().OrderBy(x => Rand.Range(0, 1f)).ToList();
 
-                List<GeneDef> genesInPack = new();
+                List<GeneDef> genesInPack = [];
                 // Add initial Gene.
                 if (targetGene == null)
                 {
@@ -909,8 +909,8 @@ namespace GeneExtractorTiers
         private static void AddBaselinerGenes(List<GeneDef> pickableGenes)
         {
             // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
-            List<string> baselinerGenes = new() { "GET_SleepRegular", "GET_ViolenceNormal", "GET_Learning_Normal", "GET_HumanLegs", "GET_AverageApperance", "GET_BodySizeNormal", "AG_NoWings", "AG_NoAntennae", "AG_NoTusks", "AG_NoLowerAntennae",
-                        "Jaw_Baseline", "Hands_Human", "Ears_Human", "Nose_Human", "Headbone_Human", "Voice_Human", "Body_Hulk", "Body_Standard", "Body_Thin", "Body_Fat", "GET_RegularAddiction", "GET_RegularBodyShape" };
+            List<string> baselinerGenes = [ "GET_SleepRegular", "GET_ViolenceNormal", "GET_Learning_Normal", "GET_HumanLegs", "GET_AverageApperance", "GET_BodySizeNormal", "AG_NoWings", "AG_NoAntennae", "AG_NoTusks", "AG_NoLowerAntennae",
+                        "Jaw_Baseline", "Hands_Human", "Ears_Human", "Nose_Human", "Headbone_Human", "Voice_Human", "Body_Hulk", "Body_Standard", "Body_Thin", "Body_Fat", "GET_RegularAddiction", "GET_RegularBodyShape" ];
             // Get all defs
             var geneDefs = DefDatabase<GeneDef>.AllDefs.Where(x => baselinerGenes.Any(bg => x.defName.Contains(bg))).ToList();
             pickableGenes.AddRange(geneDefs);
