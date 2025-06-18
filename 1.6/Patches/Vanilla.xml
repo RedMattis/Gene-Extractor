@@ -1,0 +1,17 @@
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="GeneAssembler"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>GET_GN_Engineer</li>
+        <li>GET_GN_Druid</li>
+        <li>GET_GN_Intern</li>
+        <li>GET_GN_Culture</li>
+        <li>GET_GN_Warrior</li>
+        <li>GET_GN_BasicBody</li>
+        <li>GET_GN_ViperSpecial</li>
+        <li>GET_GN_WeaknessOfMind</li>
+        <li>GET_GN_WeaknessOfBody</li>
+        <li MayRequire="RedMattis.BigSmall.Core">GET_GN_Experimental</li>
+      </value>
+  </Operation>
+</Patch>

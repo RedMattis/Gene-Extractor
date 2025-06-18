@@ -1,0 +1,7 @@
+<Defs>
+  <GeneCategoryDef>
+    <defName>Body_Size</defName>
+    <label>body size</label>
+    <displayPriorityInXenotype>701</displayPriorityInXenotype>
+  </GeneCategoryDef>
+</Defs>

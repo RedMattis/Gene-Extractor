@@ -1,0 +1,36 @@
+<Defs>
+  <ThingDef ParentName="GET_GeneNodeBaseArchite">
+    <defName>GET_GN_Experimental</defName>
+    <label>Gene Node - Experimental</label>
+    <description>"You can't do proper science without breaking a few eggs". No refunds.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Experimental</texPath>
+    </graphicData>
+    <costList Inherit="False">
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ArchiteCapsule>3</ArchiteCapsule>
+    </costList>
+    <descriptionHyperlinks>
+      <GeneDef>BS_CellPandemonium</GeneDef>
+      <GeneDef>BS_GeneStabilizing_Moderate</GeneDef>
+      <GeneDef>BS_Pain_None</GeneDef>
+      <GeneDef>BS_VeryFastAging</GeneDef>
+      <GeneDef>BS_EVA_Gene</GeneDef>
+      <GeneDef>BS_EndlessGrowth</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>BS_CellPandemonium</li>
+          <li>BS_GeneStabilizing_Moderate</li>
+          <li>BS_Pain_None</li>
+          <li>BS_VeryFastAging</li>
+          <li>BS_EVA_Gene</li>
+          <li>WoundHealing_Fast</li>
+          <li>BS_EndlessGrowth</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

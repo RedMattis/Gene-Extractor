@@ -12,4 +12,11 @@
     <li IfModNotActive="RedMattis.BigSmall.Core">1.5/Mods/NoBS</li>
     <li IfModActive="RedMattis.BigSmall.Core">1.5/Mods/BigAndSmall</li>
   </v1.5>
+  <v1.6>
+    <li>/</li>
+    <li>1.6</li>
+    <li IfModActive="vanillaexpanded.vnutriente">1.6/Mods/VNPE</li>
+    <li IfModNotActive="RedMattis.BigSmall.Core">1.6/Mods/NoBS</li>
+    <li IfModActive="RedMattis.BigSmall.Core">1.6/Mods/BigAndSmall</li>
+  </v1.6>
 </loadFolders>

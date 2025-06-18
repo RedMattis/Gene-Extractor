@@ -1,0 +1,387 @@
+<Defs>
+  <DesignatorDropdownGroupDef>
+    <defName>GET_GeneNode</defName>
+    <label>Gene Node</label>
+  </DesignatorDropdownGroupDef>
+  <DesignatorDropdownGroupDef>
+    <defName>GET_GeneNodeArchite</defName>
+    <label>Gene Node 2</label>
+  </DesignatorDropdownGroupDef>
+
+  <ThingDef ParentName="GeneBuildingBase"  Name="GET_GeneNodeBase" Abstract="True">
+    <description>Insert Generic GeneNode Description Here</description>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.5</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <tickerType>Normal</tickerType>
+    <designatorDropdown>GET_GeneNode</designatorDropdown>
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1, 1)</drawSize>
+      <shadowData>
+        <volume>(0.8, 0.8, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(1, 1)</size>
+    <rotatable>false</rotatable>
+    <canOverlapZones>false</canOverlapZones>
+    <defaultPlacingRot>North</defaultPlacingRot>
+    <designationCategory>Biotech</designationCategory>
+    <uiOrder>2101</uiOrder>
+    <researchPrerequisites>
+      <li>Xenogermination</li>
+    </researchPrerequisites>
+    <building>
+      <buildingTags>
+        <li>Biotech</li>
+      </buildingTags>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>1200</WorkToBuild>
+      <Mass>20</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <Genepack>2</Genepack>
+      <Silver>250</Silver>
+    </costList>
+    <constructionSkillPrerequisite>0</constructionSkillPrerequisite>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>25</basePowerConsumption>
+        <idlePowerDraw>25</idlePowerDraw>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Facility">
+        <maxSimultaneous>100</maxSimultaneous>
+        <maxDistance>12.9</maxDistance>
+        <showMaxSimultaneous>false</showMaxSimultaneous>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_Engineer</defName>
+    <label>Gene Node - Mechanic</label>
+    <description>This black-market gene node grants access to basic engineering skill genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Worker</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudePoor_Construction</GeneDef>
+      <GeneDef>AptitudePoor_Crafting</GeneDef>
+      <GeneDef>AptitudePoor_Mining</GeneDef>
+      <GeneDef>AptitudeStrong_Construction</GeneDef>
+      <GeneDef>AptitudeStrong_Crafting</GeneDef>
+      <GeneDef>AptitudeStrong_Mining</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudePoor_Construction</li>
+          <li>AptitudePoor_Crafting</li>
+          <li>AptitudePoor_Mining</li>
+          <li>AptitudeStrong_Construction</li>
+          <li>AptitudeStrong_Crafting</li>
+          <li>AptitudeStrong_Mining</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_Druid</defName>
+    <label>Gene Node - Farmer</label>
+    <description>This black-market gene node grants access to basic agriculture-oriented skill genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Agriculture</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudePoor_Plants</GeneDef>
+      <GeneDef>AptitudePoor_Cooking</GeneDef>
+      <GeneDef>AptitudePoor_Animals</GeneDef>
+      <GeneDef>AptitudeStrong_Plants</GeneDef>
+      <GeneDef>AptitudeStrong_Cooking</GeneDef>
+      <GeneDef>AptitudeStrong_Animals</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudePoor_Plants</li>
+          <li>AptitudePoor_Cooking</li>
+          <li>AptitudePoor_Animals</li>
+          <li>AptitudeStrong_Plants</li>
+          <li>AptitudeStrong_Cooking</li>
+          <li>AptitudeStrong_Animals</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_Intern</defName>
+    <label>Gene Node - Intern</label>
+    <description>This black-market gene node grants access to basic science-oriented skill genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Intern</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudePoor_Intellectual</GeneDef>
+      <GeneDef>AptitudePoor_Medicine</GeneDef>
+      <GeneDef>AptitudeStrong_Intellectual</GeneDef>
+      <GeneDef>AptitudeStrong_Medicine</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudePoor_Intellectual</li>
+          <li>AptitudePoor_Medicine</li>
+          <li>AptitudeStrong_Intellectual</li>
+          <li>AptitudeStrong_Medicine</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_Culture</defName>
+    <label>Gene Node - Culture</label>
+    <description>This black-market gene node grants access to basic culture-oriented skill genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Culture</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudePoor_Social</GeneDef>
+      <GeneDef>AptitudePoor_Artistic</GeneDef>
+      <GeneDef>AptitudeStrong_Social</GeneDef>
+      <GeneDef>AptitudeStrong_Artistic</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudePoor_Social</li>
+          <li>AptitudePoor_Artistic</li>
+          <li>AptitudeStrong_Social</li>
+          <li>AptitudeStrong_Artistic</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_Warrior</defName>
+    <label>Gene Node - Warrior</label>
+    <description>This black-market gene node grants access to basic combat-oriented skill genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Warrior</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudePoor_Shooting</GeneDef>
+      <GeneDef>AptitudePoor_Melee</GeneDef>
+      <GeneDef>AptitudeStrong_Shooting</GeneDef>
+      <GeneDef>AptitudeStrong_Melee</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudePoor_Shooting</li>
+          <li>AptitudePoor_Melee</li>
+          <li>AptitudeStrong_Shooting</li>
+          <li>AptitudeStrong_Melee</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase">
+    <defName>GET_GN_BasicBody</defName>
+    <label>Gene Node - Body</label>
+    <description>This black-market gene node grants access to very basic body genes. To build it a number of gene packs will be traded as part of the building process.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_BasicBody</texPath>
+    </graphicData>
+    <descriptionHyperlinks>
+      <GeneDef>GET_AverageApperance</GeneDef>
+      <GeneDef>Beauty_Ugly</GeneDef>
+      <GeneDef>Body_Hulk</GeneDef>
+      <GeneDef>Body_Fat</GeneDef>
+      <GeneDef>Body_Thin</GeneDef>
+      <GeneDef>Body_Standard</GeneDef>
+      <GeneDef>GET_RegularHair</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>GET_AverageApperance</li>
+          <li>Beauty_Ugly</li>
+          <li>Body_Hulk</li>
+          <li>Body_Fat</li>
+          <li>Body_Thin</li>
+          <li>Body_Standard</li>
+          <li>GET_RegularHair</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBase" Name="GET_GeneNodeBaseArchite" Abstract="True">
+    <researchPrerequisites Inherit="False">
+      <li>Archogenetics</li>
+    </researchPrerequisites>
+    <designatorDropdown>GET_GeneNodeArchite</designatorDropdown>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <uiOrder>2102</uiOrder>
+    <costList Inherit="False">
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ArchiteCapsule>1</ArchiteCapsule>
+      <Silver>500</Silver>
+    </costList>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_2</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1, 1)</drawSize>
+      <shadowData>
+        <volume>(0.8, 0.8, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBaseArchite">
+    <defName>GET_GN_ViperSpecial</defName>
+    <label>Gene Node - VIPER</label>
+    <description>This black-market gene node grants access to partial gene data from VIPER's Lamia Xenotype. The contents are secret, but dealer insists that it is a great deal. But alas, still no refunds.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_Lamia</texPath>
+    </graphicData>
+    <costList Inherit="False">
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ArchiteCapsule>1</ArchiteCapsule>
+    </costList>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudeTerrible_Animals</li>
+          <li>Sleepy</li>
+          <li MayRequire="RedMattis.RedMattis.BigSmall.Core">Cannibal</li>
+          <li>Instability_Mild</li>
+          <li>Instability_Major</li>
+        </geneList>
+        <geneSetList>
+          <li>
+            <geneList>
+              <li MayRequire="RedMattis.RedMattis.BigSmall.Core">LoS_Snake_Tail</li>
+              <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_Diet_Carnivore</li>
+              <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_StickyAcidSpray</li>
+              <li>NakedSpeed</li>
+              <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_Ears_PointedHD</li>
+              <li>Beard_NoBeardOnly</li>
+            </geneList>
+          </li>
+          <li>
+            <geneList>
+              <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_SlowBleeding</li>
+              <li>ToxResist_Partial</li>
+              <li>StrongStomach</li>
+              <li>RobustDigestion</li>
+            </geneList>
+          </li>
+          <li>
+            <geneList>
+              <li>AptitudeStrong_Shooting</li>
+              <li>AptitudeStrong_Melee</li>
+              <li>DarkVision</li>
+            </geneList>
+          </li>
+        </geneSetList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBaseArchite">
+    <defName>GET_GN_WeaknessOfMind</defName>
+    <label>Gene Node - Less Mind</label>
+    <description>This black-market gene node contains a huge variety of genes intended to optimize metabolism at the cost of limiting mental capacities. No refunds.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_LessMind</texPath>
+    </graphicData>
+    <costList Inherit="False">
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ArchiteCapsule>3</ArchiteCapsule>
+      <Silver>3500</Silver>
+    </costList>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudeTerrible_Artistic</GeneDef>
+      <GeneDef>AptitudeTerrible_Cooking</GeneDef>
+      <GeneDef>AptitudeTerrible_Intellectual</GeneDef>
+      <GeneDef>AptitudeTerrible_Medicine</GeneDef>
+      <GeneDef>AptitudeTerrible_Plants</GeneDef>
+      <GeneDef>AptitudeTerrible_Social</GeneDef>
+      <GeneDef>AptitudeTerrible_Animals</GeneDef>
+      <GeneDef MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_SimpleMind</GeneDef>
+      <GeneDef MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_VerySimpleMind</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudeTerrible_Artistic</li>
+          <li>AptitudeTerrible_Cooking</li>
+          <li>AptitudeTerrible_Intellectual</li>
+          <li>AptitudeTerrible_Medicine</li>
+          <li>AptitudeTerrible_Plants</li>
+          <li>AptitudeTerrible_Social</li>
+          <li>AptitudeTerrible_Animals</li>
+          <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_SimpleMind</li>
+          <li MayRequire="RedMattis.RedMattis.BigSmall.Core">BS_VerySimpleMind</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="GET_GeneNodeBaseArchite">
+    <defName>GET_GN_WeaknessOfBody</defName>
+    <label>Gene Node - Less Body</label>
+    <description>This black-market gene node contains a huge variety of genes intended to optimize metabolism at the cost of limiting the capacity for some physical acts. No refunds.</description>
+    <graphicData>
+      <texPath>GeneNodes/GET_GeneNode_LessBody</texPath>
+    </graphicData>
+    <costList Inherit="False">
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ArchiteCapsule>2</ArchiteCapsule>
+      <Silver>2000</Silver>
+    </costList>
+    <descriptionHyperlinks>
+      <GeneDef>AptitudeTerrible_Construction</GeneDef>
+      <GeneDef>AptitudeTerrible_Crafting</GeneDef>
+      <GeneDef>AptitudeTerrible_Melee</GeneDef>
+      <GeneDef>AptitudeTerrible_Mining</GeneDef>
+      <GeneDef>AptitudeTerrible_Shooting</GeneDef>
+    </descriptionHyperlinks>
+    <comps>
+      <li Class="GeneExtractorTiers.CompProperties_GeneNode">
+        <geneList>
+          <li>AptitudeTerrible_Construction</li>
+          <li>AptitudeTerrible_Crafting</li>
+          <li>AptitudeTerrible_Melee</li>
+          <li>AptitudeTerrible_Mining</li>
+          <li>AptitudeTerrible_Shooting</li>
+        </geneList>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>
