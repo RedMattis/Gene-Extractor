@@ -748,18 +748,22 @@ namespace GeneExtractorTiers
 
             foreach (Thing thing in thingsOnMap)
             {
-                foreach (var genePack in thing.TryGetComp<CompGenepackContainer>().ContainedGenepacks)
+                var genepackList = thing.TryGetComp<CompGenepackContainer>()?.ContainedGenepacks;
+                if (genepackList != null)
                 {
-                    int genesInPack = genePack.GeneSet.GenesListForReading.Count;
-                    foreach (var geneDef in genePack.GeneSet.GenesListForReading)
+                    foreach (var genePack in genepackList)
                     {
-                        if (genesInPack > 1 && !geneLookup.ContainsKey(geneDef))
+                        int genesInPack = genePack.GeneSet.GenesListForReading.Count;
+                        foreach (var geneDef in genePack.GeneSet.GenesListForReading)
                         {
-                            geneLookup[geneDef] = GeneState.Multipack;
-                        }
-                        else if (genesInPack == 1)
-                        {
-                            geneLookup[geneDef] = GeneState.SinglePack;
+                            if (genesInPack > 1 && !geneLookup.ContainsKey(geneDef))
+                            {
+                                geneLookup[geneDef] = GeneState.Multipack;
+                            }
+                            else if (genesInPack == 1)
+                            {
+                                geneLookup[geneDef] = GeneState.SinglePack;
+                            }
                         }
                     }
                 }

@@ -113,7 +113,7 @@
     <addictionChanceFactor>1</addictionChanceFactor>
 
     <!-- <modExtensions>
-			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VanillaGenesExpanded.GeneExtension">
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="VEF.Genes.GeneExtension">
 				<backgroundPathEndogenes>GeneIcons/BS_BackEndogene_Nope</backgroundPathEndogenes>
 				<backgroundPathXenogenes>GeneIcons/BS_BackXenogene_Nope</backgroundPathXenogenes>
 			</li>
