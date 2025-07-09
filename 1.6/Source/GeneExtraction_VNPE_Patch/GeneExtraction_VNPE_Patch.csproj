@@ -75,5 +75,11 @@
     <Compile Include="VNPE_Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneExtractorTiers\GeneExtractorTiers.csproj">
+      <Project>{f0272df1-d703-495d-8f95-48d6bab3a0b9}</Project>
+      <Name>GeneExtractorTiers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -56,9 +56,10 @@ namespace GeneExtraction_VNPE_Patch
     //	}
     //}
 
-
+    [HarmonyPatch]
     public static class Building_GeneExtractorTier
     {
+        [HarmonyPatch(typeof(GeneExtractorTiers.Building_GeneExtractorTier), "Tick")]
         public static void Postfix(Building __instance)
         {
 

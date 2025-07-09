@@ -17,14 +17,14 @@ namespace GeneExtraction_VNPE_Patch
 		static VNPEPatchMain()
 		{
 			var harmony = new Harmony("GET-VNPE_COMPAT");
-            //harmony.PatchAll();
-            Type typeT2 = AccessTools.TypeByName("GeneExtractorTiers.Building_GeneExtractorTier");
-            if (typeT2 != null)
-            {
-                MethodInfo method = typeT2.GetMethod("Tick");
-                MethodInfo method2 = typeof(Building_GeneExtractorTier).GetMethod("Postfix");
-                harmony.Patch(method, null, new HarmonyMethod(method2), null, null);
-            }
+            harmony.PatchAll();
+            //Type typeT2 = AccessTools.TypeByName("GeneExtractorTiers.Building_GeneExtractorTier");
+            //if (typeT2 != null)
+            //{
+            //    MethodInfo method = typeT2.GetMethod("Tick");
+            //    MethodInfo method2 = typeof(Building_GeneExtractorTier).GetMethod("Postfix");
+            //    harmony.Patch(method, null, new HarmonyMethod(method2), null, null);
+            //}
 
             //Type typeT3 = AccessTools.TypeByName("GeneExtractorTiers.Build_GeneExtractorTier_III");
             //if (typeT3 != null)
