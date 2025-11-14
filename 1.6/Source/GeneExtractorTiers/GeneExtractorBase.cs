@@ -50,7 +50,6 @@ namespace GeneExtractorTiers
 
         // UI
         private static readonly Texture2D CancelLoadingIcon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
-        public static readonly CachedTexture InsertPawnIcon = new CachedTexture("UI/Gizmos/InsertPawn");
         private static readonly Texture2D CancelIcon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
         private static readonly Texture2D ActivateOverdrive = ContentFinder<Texture2D>.Get("GET_OverdriveOn");
         private static readonly Texture2D CancelOverdrive = ContentFinder<Texture2D>.Get("GET_OverdriveOff");
