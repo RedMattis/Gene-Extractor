@@ -1,15 +1,12 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Verse;
+using HarmonyLib;
+using RimWorld;
 using UnityEngine;
-using Verse.Sound;
+using Verse;
 using Verse.AI;
+using Verse.Sound;
 
 namespace GeneExtractorTiers
 {
