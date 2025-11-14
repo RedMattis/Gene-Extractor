@@ -14,8 +14,6 @@ namespace GeneExtractorTiers.Extractors
     [StaticConstructorOnStartup]
     public abstract class GeneExtractorBase : Building_Enterable, IThingHolderWithDrawnPawn, IThingHolder
     {
-        public enum GeneState { SinglePack, Multipack }
-
         #region IThingHolderWithDrawnPawn Implementation
         public float HeldPawnDrawPos_Y => DrawPos.y + 3f / 74f;
 
