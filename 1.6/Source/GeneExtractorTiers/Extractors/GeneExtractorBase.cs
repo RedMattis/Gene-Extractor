@@ -186,7 +186,8 @@ namespace GeneExtractorTiers.Extractors
                 var almostNewGenes = pickableGenes.Where(x => !existingGenes.ContainsKey(x) || (existingGenes.ContainsKey(x) && existingGenes[x] == GeneState.Multipack)).ToList();
                 var pickableNewish = newGenes.Concat(almostNewGenes).ToHashSet().OrderBy(x => Rand.Range(0, 1f)).ToList();
 
-                List<GeneDef> genesInPack = BuildGeneListFromPawn(containedPawn, pickableGenes, pickableNewish);
+                List<GeneDef> genesInPack = GeneHelper.BuildGeneListFromPawn(containedPawn, ref TargetGene,
+                    pickableGenes, pickableNewish, Settings.megaMultipackChance, Settings.multipackChance);
 
                 var genesInPackListOfLists = new List<List<GeneDef>>();
                 if (Rand.Chance(Settings.splitZeroCost))
@@ -263,57 +264,6 @@ namespace GeneExtractorTiers.Extractors
                     Find.Selector.Select(pawn, playSound: false, forceDesignatorDeselect: false);
                 }
             }
-        }
-
-
-        // Genes
-        protected List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish)
-        {
-            List<GeneDef> genesInPack = [];
-            // Add initial Gene.
-            if (TargetGene == null)
-            {
-                if (pickableNewish.Any())
-                {
-                    genesInPack.Add(pickableNewish.Pop());
-                }
-                else
-                {
-                    genesInPack.Add(pickableGenes.Pop());
-                    Log.Message($"{containedPawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
-                }
-            }
-            else
-            {
-                genesInPack.Add(TargetGene);
-            }
-
-            if (Rand.Chance(Settings.megaMultipackChance))
-            {
-                // Generate huge multipack
-                int numberOfGenes = Rand.Range(3, 16);
-                while (numberOfGenes > 0 && pickableGenes.Any())
-                {
-                    genesInPack.Add(pickableGenes.Pop());
-                    numberOfGenes--;
-                }
-            }
-            else if (Rand.Chance(Settings.multipackChance))
-            {
-                // Generate multipack
-                int numberOfGenes = Rand.Range(1, 3);
-                while (numberOfGenes > 0 && pickableGenes.Any())
-                {
-                    genesInPack.Add(pickableGenes.Pop());
-                    numberOfGenes--;
-                }
-            }
-            else
-            {
-                TargetGene = null;
-            }
-
-            return genesInPack;
         }
 
 
