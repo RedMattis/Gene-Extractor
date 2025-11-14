@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace GeneExtractorTiers.Utility;
@@ -50,5 +51,56 @@ public static class GeneHelper
         // Get all defs
         var geneDefs = DefDatabase<GeneDef>.AllDefs.Where(x => baselinerGenes.Any(bg => x.defName.Contains(bg))).ToList();
         pickableGenes.AddRange(geneDefs);
+    }
+
+    public static Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
+    {
+        // Get the map this is placed in
+        List<Thing> thingsOnMap = currentMap.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
+
+        // i = 1 in singlepack. in multipcak.
+        Dictionary<GeneDef, GeneState> geneLookup = [];
+
+        foreach (Thing thing in thingsOnMap)
+        {
+            var genepackList = thing.TryGetComp<CompGenepackContainer>()?.ContainedGenepacks;
+            if (genepackList != null)
+            {
+                foreach (var genePack in genepackList)
+                {
+                    int genesInPack = genePack.GeneSet.GenesListForReading.Count;
+                    foreach (var geneDef in genePack.GeneSet.GenesListForReading)
+                    {
+                        if (genesInPack > 1 && !geneLookup.ContainsKey(geneDef))
+                        {
+                            geneLookup[geneDef] = GeneState.Multipack;
+                        }
+                        else if (genesInPack == 1)
+                        {
+                            geneLookup[geneDef] = GeneState.SinglePack;
+                        }
+                    }
+                }
+            }
+            if (thing.TryGetComp<Comp_GeneNode>() is Comp_GeneNode gnComp)
+            {
+                foreach (var geneDef in gnComp.Props.geneList)
+                {
+                    geneLookup[geneDef] = GeneState.SinglePack;
+                }
+                foreach (var geneSet in gnComp.Props.geneSetList)
+                {
+                    foreach (var geneDef in geneSet.geneList)
+                    {
+                        if (!geneLookup.ContainsKey(geneDef))
+                        {
+                            geneLookup[geneDef] = GeneState.Multipack;
+                        }
+                    }
+                }
+            }
+        }
+
+        return geneLookup;
     }
 }
