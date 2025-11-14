@@ -35,10 +35,10 @@ namespace GeneExtractorTiers
         private const int OverchargeSpeedFactor = 2;
 
         // Unsaved
-        [Unsaved(false)] private CompPowerTrader? cachedPowerComp;
-        [Unsaved(false)] private Sustainer? sustainerWorking;
-        [Unsaved(false)] private Effecter? progressBar;
-        [Unsaved(false)] private Texture2D? cachedInsertPawnTex;
+        [Unsaved(false)] private CompPowerTrader cachedPowerComp;
+        [Unsaved(false)] private Sustainer sustainerWorking;
+        [Unsaved(false)] private Effecter progressBar;
+        [Unsaved(false)] private Texture2D cachedInsertPawnTex;
         [Unsaved(false)] private Effecter bubbleEffecter;
         [Unsaved(false)] private Graphic cachedTopGraphic;
 
