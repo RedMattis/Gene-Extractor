@@ -27,9 +27,6 @@ namespace GeneExtractorTiers
         public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1 );
 
         private const float WorkingPowerUsageFactor = 1f;
-        private const float BasePawnConsumedNutritionPerDay = 3f;
-        private const float BiostarvationGainPerDayNoFoodOrPower = 0.5f;
-        private const float BiostarvationFallPerDayPoweredAndFed = 0.1f;
         public const float NutritionBuffer = 10f;
         private StorageSettings allowedNutritionSettings;
 
