@@ -27,7 +27,6 @@ namespace GeneExtractorTiers
         public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1 );
 
         private const float WorkingPowerUsageFactor = 1f;
-        public const float NutritionBuffer = 10f;
         private StorageSettings allowedNutritionSettings;
 
         private bool overchargeActive = false;
