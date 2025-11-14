@@ -261,6 +261,12 @@ namespace GeneExtractorTiers.Extractors
             TicksRemaining *= OverchargeSpeedFactor;
         }
 
+        protected virtual void SetTargetGene(GeneDef gene)
+        {
+            TargetGene = gene;
+            Log.Message($"DEBUG: Selected gene: \"{gene.label}\" for extraction.");
+        }
+
 
         // Pawn
         protected Pawn GetContainedPawn()
@@ -292,74 +298,14 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Float Menus
-        public void OpenFloatMenuGenePicker()
+        protected virtual void OpenFloatMenuGenePicker()
         {
-            var list = new List<FloatMenuOption>();
-            var allPawnGenes = selectedPawn.genes.GenesListForReading.Select(x => x.def).ToList();
-            if (GeneHelper.IsBaselinerOrEquavalent(allPawnGenes))
-            {
-                GeneHelper.AddBaselinerGenes(allPawnGenes);
-            }
-
-            foreach (var gene in allPawnGenes)
-            {
-                var existingGenes = GeneHelper.GetAllGenesOnMap(Map);
-                if (existingGenes.ContainsKey(gene) && existingGenes[gene] == GeneState.SinglePack)
-                {
-                    continue;
-                }
-
-                list.Add(new FloatMenuOption(gene.LabelCap, delegate
-                {
-                    TargetGene = gene;
-                    Log.Message($"DEBUG: Selected gene: \"{gene.label}\" for extraction.");
-                }));
-            }
-            Find.WindowStack.Add(new FloatMenu(list));
+            FloatMenuHelper.OpenFloatMenuGenePicker(selectedPawn, Map, SetTargetGene);
         }
 
         protected virtual void BuildFloatMenuAvailablePawns()
         {
-            List<FloatMenuOption> list = [];
-            foreach (Pawn pawn in Map.mapPawns.AllPawnsSpawned)
-            {
-                if (pawn.genes != null)
-                {
-                    AcceptanceReport acceptanceReport = CanAcceptPawn(pawn);
-                    string text = pawn.LabelShortCap + ", " + pawn.genes.XenotypeLabelCap;
-                    if (!acceptanceReport.Accepted)
-                    {
-                        if (!acceptanceReport.Reason.NullOrEmpty())
-                        {
-                            list.Add(new FloatMenuOption(text + ": " + acceptanceReport.Reason, null, pawn, Color.white));
-                        }
-                    }
-                    else
-                    {
-                        Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.XenogermReplicating);
-                        if (firstHediffOfDef != null)
-                        {
-                            text = text
-                                + " ("
-                                + firstHediffOfDef.LabelBase
-                                + ", "
-                                + firstHediffOfDef.TryGetComp<HediffComp_Disappears>()
-                                    .ticksToDisappear
-                                    .ToStringTicksToPeriod(allowSeconds: true, shortForm: true)
-                                    .Colorize(ColoredText.SubtleGrayColor)
-                                + ")";
-                        }
-                        list.Add(new FloatMenuOption(text, () => SelectPawn(pawn), pawn, Color.white));
-                    }
-                }
-            }
-
-            if (!list.Any())
-            {
-                list.Add(new FloatMenuOption("NoExtractablePawns".Translate(), null));
-            }
-
-            Find.WindowStack.Add(new FloatMenu(list));
+            FloatMenuHelper.BuildFloatMenuAvailablePawns(Map, CanAcceptPawn, SelectPawn);
         }
 
 
@@ -424,7 +370,7 @@ namespace GeneExtractorTiers.Extractors
         }
 
 
-        // Inspect string buildout
+        // Inspect string build-out
         protected void InspectStringAddTime(StringBuilder stringBuilder)
         {
             stringBuilder

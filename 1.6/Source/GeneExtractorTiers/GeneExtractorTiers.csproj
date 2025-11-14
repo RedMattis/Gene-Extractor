@@ -71,6 +71,7 @@
     <Compile Include="GenePickerWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\FloatMenuHelper.cs" />
     <Compile Include="Utility\GeneHelper.cs" />
     <Compile Include="GeneState.cs" />
     <Compile Include="Utility\GizmoHelper.cs" />
