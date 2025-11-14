@@ -237,6 +237,30 @@ namespace GeneExtractorTiers.Extractors
             startTick = Find.TickManager.TicksGame;
         }
 
+        protected virtual void CancelLoad()
+        {
+            innerContainer.TryDropAll(Position, base.Map, ThingPlaceMode.Near);
+            if (selectedPawn.CurJobDef == JobDefOf.EnterBuilding)
+            {
+                selectedPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
+            }
+            selectedPawn = null;
+            startTick = -1;
+            sustainerWorking = null;
+        }
+
+        protected virtual void ActivateOverdrive()
+        {
+            OverchargeActive = true;
+            TicksRemaining /= OverchargeSpeedFactor;
+        }
+
+        protected virtual void DeactivateOverdrive()
+        {
+            OverchargeActive = false;
+            TicksRemaining *= OverchargeSpeedFactor;
+        }
+
 
         // Pawn
         protected Pawn GetContainedPawn()
@@ -340,105 +364,6 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Gizmos
-        protected Command_Action BuildGizmoOverdrive()
-        {
-            Command_Action overdriveAction;
-
-            if (OverchargeActive)
-            {
-                overdriveAction = new Command_Action
-                {
-                    defaultLabel = "GET_DeactivateOverdrive".Translate(),
-                    defaultDesc = "GET_DeactivateOverdriveDesc".Translate(),
-                    icon = Textures.CancelOverdrive,
-                    action = delegate
-                    {
-                        OverchargeActive = false;
-                        TicksRemaining *= OverchargeSpeedFactor;
-                    }
-                };
-            }
-            else
-            {
-                overdriveAction = new Command_Action
-                {
-                    defaultLabel = "GET_ActivateOverdrive".Translate(),
-                    defaultDesc = "GET_ActivateOverdriveDesc".Translate(),
-                    icon = Textures.ActivateOverdrive,
-                    action = delegate
-                    {
-                        OverchargeActive = true;
-                        TicksRemaining /= OverchargeSpeedFactor;
-                    }
-                };
-            }
-
-            return overdriveAction;
-        }
-
-        protected Command_Action BuildGizmoSelectGene()
-        {
-            return new()
-            {
-                defaultLabel = "GET_SelectGene".Translate(),
-                defaultDesc = "GET_SelectGeneDesc".Translate(),
-                icon = Textures.TargetGeneIcon, // FIX ICON.
-                action = OpenFloatMenuGenePicker
-            };
-        }
-
-        protected Command_Action BuildGizmoCancelExtraction()
-        {
-            return new()
-            {
-                defaultLabel = "CommandCancelExtraction".Translate(),
-                defaultDesc = "CommandCancelExtractionDesc".Translate(),
-                icon = Textures.CancelLoadingIcon,
-                activateSound = SoundDefOf.Designate_Cancel,
-                action = Cancel
-            };
-        }
-
-        protected Command_Action BuildGizmoCancelLoad()
-        {
-            return new()
-            {
-                defaultLabel = "CommandCancelLoad".Translate(),
-                defaultDesc = "CommandCancelLoadDesc".Translate(),
-                icon = Textures.CancelIcon,
-                activateSound = SoundDefOf.Designate_Cancel,
-                action = delegate
-                {
-                    innerContainer.TryDropAll(Position, base.Map, ThingPlaceMode.Near);
-                    if (selectedPawn.CurJobDef == JobDefOf.EnterBuilding)
-                    {
-                        selectedPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
-                    }
-                    selectedPawn = null;
-                    startTick = -1;
-                    sustainerWorking = null;
-                }
-            };
-        }
-
-        protected Command_Action BuildGizmoInsertPawn()
-        {
-            var insertPerson = new Command_Action()
-            {
-                defaultLabel = "InsertPerson".Translate() + "...",
-                defaultDesc = "InsertPersonGeneExtractorDesc".Translate(),
-                icon = Textures.InsertPawn,
-                action = BuildFloatMenuAvailablePawns,
-            };
-
-            if (!PowerOn)
-            {
-                insertPerson.Disable("NoPower".Translate().CapitalizeFirst());
-            }
-
-            return insertPerson;
-        }
-
         protected virtual IEnumerable<Gizmo> BuildGizmosDevGizmos()
         {
             yield return new Command_Action
@@ -466,17 +391,17 @@ namespace GeneExtractorTiers.Extractors
                 yield return gizmo;
             }
 
-            yield return BuildGizmoOverdrive();
+            yield return GizmoHelper.BuildGizmoOverdrive(OverchargeActive, ActivateOverdrive, DeactivateOverdrive);
 
             if (base.Working)
             {
                 // Add dropdown with all genes available on the pawn.
                 if (CanTargetExtraction || Settings.allVatsCanTargetGenes)
                 {
-                    yield return BuildGizmoSelectGene();
+                    yield return GizmoHelper.BuildGizmoSelectGene(OpenFloatMenuGenePicker);
                 }
 
-                yield return BuildGizmoCancelExtraction();
+                yield return GizmoHelper.BuildGizmoCancelExtraction(Cancel);
 
                 if (DebugSettings.ShowDevGizmos)
                 {
@@ -491,11 +416,11 @@ namespace GeneExtractorTiers.Extractors
 
             if (selectedPawn != null)
             {
-                yield return BuildGizmoCancelLoad();
+                yield return GizmoHelper.BuildGizmoCancelLoad(CancelLoad);
                 yield break;
             }
 
-            yield return BuildGizmoInsertPawn();
+            yield return GizmoHelper.BuildGizmoInsertPawn(BuildFloatMenuAvailablePawns, PowerOn);
         }
 
 
