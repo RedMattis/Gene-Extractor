@@ -69,6 +69,7 @@
     <Compile Include="GenePickerWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GeneState.cs" />
     <Compile Include="WorkGivers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

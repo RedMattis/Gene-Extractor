@@ -736,8 +736,6 @@ namespace GeneExtractorTiers
             //}
         }
 
-        public enum GeneState { SinglePack, Multipack }
-
         public Dictionary<GeneDef, GeneState> GetAllGenesOnCurrentMap()
         {
             // Get the map this is placed in
