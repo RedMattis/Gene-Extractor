@@ -58,7 +58,6 @@ namespace GeneExtractorTiers
         // Graphics
         public float HeldPawnDrawPos_Y => DrawPos.y + 3f / 74f;
         public float HeldPawnBodyAngle => base.Rotation.AsAngle; //0;
-        //public override Vector3 PawnDrawOffset => Vector3.zero;
         public override Vector3 PawnDrawOffset => CompBiosculpterPod.FloatingOffset(Find.TickManager.TicksGame);
         public PawnPosture HeldPawnPosture => PawnPosture.LayingOnGroundFaceUp;
         private const float ProgressBarOffsetZ = -0.82f;
