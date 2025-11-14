@@ -103,4 +103,56 @@ public static class GeneHelper
 
         return geneLookup;
     }
+
+    public static List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn, 
+        ref GeneDef targetGene, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish,
+        float chanceMegaPack, float chanceMultiPack)
+    {
+        List<GeneDef> genesInPack = [];
+
+        // Add initial Gene.
+        if (targetGene == null)
+        {
+            if (pickableNewish.Any())
+            {
+                genesInPack.Add(pickableNewish.Pop());
+            }
+            else
+            {
+                genesInPack.Add(pickableGenes.Pop());
+                Log.Message($"{containedPawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
+            }
+        }
+        else
+        {
+            genesInPack.Add(targetGene);
+        }
+
+        if (Rand.Chance(chanceMegaPack))
+        {
+            // Generate huge multipack
+            int numberOfGenes = Rand.Range(3, 16);
+            while (numberOfGenes > 0 && pickableGenes.Any())
+            {
+                genesInPack.Add(pickableGenes.Pop());
+                numberOfGenes--;
+            }
+        }
+        else if (Rand.Chance(chanceMultiPack))
+        {
+            // Generate multipack
+            int numberOfGenes = Rand.Range(1, 3);
+            while (numberOfGenes > 0 && pickableGenes.Any())
+            {
+                genesInPack.Add(pickableGenes.Pop());
+                numberOfGenes--;
+            }
+        }
+        else
+        {
+            targetGene = null;
+        }
+
+        return genesInPack;
+    }
 }
