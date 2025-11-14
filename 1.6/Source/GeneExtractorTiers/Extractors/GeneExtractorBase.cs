@@ -426,7 +426,7 @@ namespace GeneExtractorTiers.Extractors
         // Tick
         protected abstract bool Tick_ResourceStarvation();
 
-        protected void TickHandleSustainer()
+        protected void Tick_HandleSustainer()
         {
             if (sustainerWorking == null || sustainerWorking.Ended)
             {
@@ -511,7 +511,7 @@ namespace GeneExtractorTiers.Extractors
         {
             if (Working && PowerTraderComp.PowerOn)
             {
-                TickEffects();
+                Tick_Effects();
                 if (PowerOn) TicksRemaining--;
 
                 if (TicksRemaining <= 0) Finish();
@@ -523,7 +523,7 @@ namespace GeneExtractorTiers.Extractors
             }
         }
 
-        private void TickEffects()
+        protected virtual void Tick_Effects()
         {
             if (sustainerWorking == null || sustainerWorking.Ended)
                 sustainerWorking =

@@ -291,7 +291,7 @@ namespace GeneExtractorTiers.Extractors
                 if (Tick_ResourceStarvation())
                     return;
 
-                TickHandleSustainer();
+                Tick_HandleSustainer();
                 Tick_ConsumeResources();
                 Tick_GlowMote();
             }
