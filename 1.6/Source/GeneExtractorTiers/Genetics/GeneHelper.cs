@@ -7,22 +7,22 @@ namespace GeneExtractorTiers.Genetics;
 
 public static class GeneHelper
 {
-    public static bool IsBaselinerOrEquavalent(List<GeneDef> pickableGenes)
+    public static bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
     {
-        return pickableGenes
-            .All(
-                x =>
-                    x.defName.ToLower().Contains("skin")
-                    || x.defName.ToLower().Contains("hair")
-                    //TODO: (LFS) Genes Expanded: Eyes support
-                )
-            || pickableGenes.Count == 0;
+        return !pickableGenes.Any()
+            || pickableGenes
+                .All(
+                    x =>
+                        x.defName.ToLower().Contains("skin")
+                        || x.defName.ToLower().Contains("hair")
+                        //TODO: (LFS) Genes Expanded: Eyes support
+                    );
     }
 
     public static void AddBaselinerGenes(List<GeneDef> pickableGenes)
     {
         // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
-        List<string> baselinerGenes = 
+        List<string> baselinerGenes =
         [
             "GET_SleepRegular",
             "GET_ViolenceNormal",
@@ -104,7 +104,7 @@ public static class GeneHelper
         return geneLookup;
     }
 
-    public static List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn, 
+    public static List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn,
         ref GeneDef targetGene, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish,
         float chanceMegaPack, float chanceMultiPack)
     {
