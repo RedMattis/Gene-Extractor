@@ -1,13 +1,9 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+using HarmonyLib;
+using RimWorld;
 using Verse;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace GeneExtractorTiers
 {
