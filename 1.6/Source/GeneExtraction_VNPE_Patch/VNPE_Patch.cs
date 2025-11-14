@@ -1,11 +1,6 @@
-﻿using HarmonyLib;
+﻿using GeneExtractorTiers.Extractors;
+using HarmonyLib;
 using PipeSystem;
-using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace GeneExtraction_VNPE_Patch
@@ -59,7 +54,7 @@ namespace GeneExtraction_VNPE_Patch
     [HarmonyPatch]
     public static class Building_GeneExtractorTier
     {
-        [HarmonyPatch(typeof(GeneExtractorTiers.Building_GeneExtractorTier), "Tick")]
+        [HarmonyPatch(typeof(GeneExtractorNutritionBase), "Tick")]
         public static void Postfix(Building __instance)
         {
 

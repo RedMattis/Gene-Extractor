@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extractors\GeneExtractorBase.cs" />
+    <Compile Include="Extractors\GeneExtractorNutritionBase.cs" />
     <Compile Include="Extractors\GeneExtractorTiers.cs" />
     <Compile Include="Extractors\Textures.cs" />
     <Compile Include="GeneNodes.cs" />

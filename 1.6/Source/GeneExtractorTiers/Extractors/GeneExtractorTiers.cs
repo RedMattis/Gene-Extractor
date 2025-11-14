@@ -4,19 +4,19 @@ using Verse;
 namespace GeneExtractorTiers.Extractors
 {
     [StaticConstructorOnStartup]
-    public class Build_GeneExtractorTier_II : Building_GeneExtractorTier
+    public class Build_GeneExtractorTier_II : GeneExtractorNutritionBase
     {
     }
 
     [StaticConstructorOnStartup]
-    public class Build_GeneExtractorTier_III : Building_GeneExtractorTier
+    public class Build_GeneExtractorTier_III : GeneExtractorNutritionBase
     {
         public override bool CanExtractArchite => true;
         public override float SpeedMultiplier => 1.25f;
     }
 
     [StaticConstructorOnStartup]
-    public class Build_GeneExtractorTier_IV : Building_GeneExtractorTier
+    public class Build_GeneExtractorTier_IV : GeneExtractorNutritionBase
     {
         public override bool CanExtractArchite => true;
         public override bool CanTargetExtraction => true;

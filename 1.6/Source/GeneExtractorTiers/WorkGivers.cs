@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using GeneExtractorTiers.Extractors;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace GeneExtractorTiers
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-            if (t is not Building_GeneExtractorTier geneVat)
+            if (t is not GeneExtractorNutritionBase geneVat)
             {
                 return null;
             }
@@ -51,7 +52,7 @@ namespace GeneExtractorTiers
 			{
 				return false;
 			}
-            if (t is not Building_GeneExtractorTier geneVat)
+            if (t is not GeneExtractorNutritionBase geneVat)
             {
                 return false;
             }
@@ -68,7 +69,7 @@ namespace GeneExtractorTiers
 			return false;
 		}
 
-		private ThingCount FindNutrition(Pawn pawn, Building_GeneExtractorTier vat)
+		private ThingCount FindNutrition(Pawn pawn, GeneExtractorNutritionBase vat)
 		{
 			Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, Validator);
 			if (thing == null)
