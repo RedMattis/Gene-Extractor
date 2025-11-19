@@ -283,13 +283,14 @@ namespace GeneExtractorTiers.Extractors
             if ((bool)CanAcceptPawn(pawn))
             {
                 selectedPawn = pawn;
-                int num = pawn.DeSpawnOrDeselect() ? 1 : 0;
+                bool deselect = pawn.DeSpawnOrDeselect();
+
                 if (innerContainer.TryAddOrTransfer(pawn))
                 {
                     startTick = Find.TickManager.TicksGame;
                     TicksRemaining = ExtractionTimeInTicks;
                 }
-                if (num != 0)
+                if (deselect)
                 {
                     Find.Selector.Select(pawn, playSound: false, forceDesignatorDeselect: false);
                 }
