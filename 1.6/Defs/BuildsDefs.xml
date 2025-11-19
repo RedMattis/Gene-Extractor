@@ -4,7 +4,7 @@
     <defName>GET_GeneExtractor_II</defName>
     <label>gene extraction vat</label>
     <description>An automated surgery machine that can extract a person's genes and create a genepack from them. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands".\n\n(The speed of the extraction can be changed in the mod settings)</description>
-    <thingClass>GeneExtractorTiers.Extractors.Build_GeneExtractorTier_II</thingClass>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_II</thingClass>
     <containedPawnsSelectable>true</containedPawnsSelectable>
     <passability>PassThroughOnly</passability>
     <fillPercent>0.5</fillPercent>
@@ -99,7 +99,7 @@
     <defName>GET_GeneExtractor_III</defName>
     <label>archite gene extraction vat</label>
     <description>An automated surgery machine that can extract a person's genes and create a genepack from them. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThis version can extract archite genes and extracts slightly faster.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands".</description>
-    <thingClass>GeneExtractorTiers.Extractors.Build_GeneExtractorTier_III</thingClass>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_III</thingClass>
 
     <graphicData>
       <texPath>GET_Extractor_archite</texPath>
@@ -119,7 +119,7 @@
     <defName>GET_GeneExtractor_IV</defName>
     <label>archite gene extraction vat II</label>
     <description>An automated surgery machine that can extract a person's genes and create a genepack from them, this version permits targeting specific genes and also operates at 250% of the speed a regular extractor vat, but requires an AI persona core. The machine will slowly extract genes from the person in it, preferring genes not already stored nearby.\n\nA large amount of nutrition will be consumed while in use.\n\nThis version can extract archite genes.\n\nThese more advanced machines are capable of extracting genes from Baseliners, such as "Regular Sleeper" or "Human Hands"</description>
-    <thingClass>GeneExtractorTiers.Extractors.Build_GeneExtractorTier_IV</thingClass>
+    <thingClass>GeneExtractorTiers.Build_GeneExtractorTier_IV</thingClass>
 
     <graphicData>
       <texPath>GET_Extractor_archite2</texPath>

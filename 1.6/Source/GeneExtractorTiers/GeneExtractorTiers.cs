@@ -1,7 +1,8 @@
-﻿using RimWorld;
+﻿using GeneExtractorTiers.Extractors;
+using RimWorld;
 using Verse;
 
-namespace GeneExtractorTiers.Extractors
+namespace GeneExtractorTiers
 {
     [StaticConstructorOnStartup]
     public class Build_GeneExtractorTier_II : GeneExtractorNutritionBase
