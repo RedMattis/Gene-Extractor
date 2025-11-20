@@ -113,13 +113,18 @@ namespace GeneExtractorTiers.Extractors
             {
                 if (TargetSelected)
                 {
-                    if (innerContainer.Contains(selectedPawn))
-                    {
-                        selectedPawn.Drawer.renderer.RenderPawnAt(DrawPos + PawnDrawOffset, null, neverAimWeapon: true);
-                    }
+                    DrawPawn();
                 }
             }
             TopGraphic.Draw(DrawPos + Altitudes.AltIncVect * 2f, base.Rotation, this);
+        }
+
+        protected virtual void DrawPawn()
+        {
+            if (innerContainer.Contains(selectedPawn))
+            {
+                selectedPawn.Drawer.renderer.RenderPawnAt(DrawPos + PawnDrawOffset, null, neverAimWeapon: true);
+            }
         }
 
         protected static Dictionary<Rot4, ThingDef> GlowMotePerRotation;
@@ -316,7 +321,7 @@ namespace GeneExtractorTiers.Extractors
         // Float Menus
         protected virtual void OpenFloatMenuGenePicker()
         {
-            FloatMenuHelper.OpenFloatMenuGenePicker(selectedPawn, Map, SetTargetGene);
+            FloatMenuHelper.OpenFloatMenuGenePicker(GetContainedPawn(), Map, SetTargetGene);
         }
 
         protected virtual void BuildFloatMenuAvailablePawns()
