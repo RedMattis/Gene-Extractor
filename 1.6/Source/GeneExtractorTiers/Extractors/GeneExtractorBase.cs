@@ -77,7 +77,7 @@ namespace GeneExtractorTiers.Extractors
         [Unsaved(false)] private Sustainer sustainerWorking;
         [Unsaved(false)] private Effecter progressBar;
         [Unsaved(false)] private Effecter bubbleEffecter;
-        [Unsaved(false)] private Graphic cachedTopGraphic;
+        [Unsaved(false)] protected Graphic cachedTopGraphic;
 
         protected void StopSustainer() => sustainerWorking = null;
 
