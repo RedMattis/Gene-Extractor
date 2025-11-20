@@ -24,6 +24,8 @@ namespace GeneExtractorTiers.Extractors
 
         public virtual bool TargetSelected => selectedPawn != null;
 
+        public virtual bool ContainsTarget => innerContainer.Contains(selectedPawn);
+
         protected const float WorkingPowerUsageFactor = 1f;
 
         protected const float OverchargePowerFactor = 4f;
@@ -121,7 +123,7 @@ namespace GeneExtractorTiers.Extractors
 
         protected virtual void DrawPawn()
         {
-            if (innerContainer.Contains(selectedPawn))
+            if (ContainsTarget)
             {
                 selectedPawn.Drawer.renderer.RenderPawnAt(DrawPos + PawnDrawOffset, null, neverAimWeapon: true);
             }
@@ -143,7 +145,7 @@ namespace GeneExtractorTiers.Extractors
 
         protected virtual void Fail()
         {
-            if (innerContainer.Contains(selectedPawn))
+            if (ContainsTarget)
             {
                 innerContainer.TryDrop(selectedPawn, InteractionCell, base.Map, ThingPlaceMode.Near, 1, out var _);
                 KillPawnFromStarvation();
@@ -430,7 +432,7 @@ namespace GeneExtractorTiers.Extractors
 
             if (base.Working)
             {
-                if (TargetSelected && innerContainer.Contains(selectedPawn))
+                if (TargetSelected && ContainsTarget)
                 {
                     InspectStringAddTime(stringBuilder);
                     InspectStringAddPawn(stringBuilder);
