@@ -79,6 +79,11 @@ namespace GeneExtractorTiers.Extractors
 
         protected void StopSustainer() => sustainerWorking = null;
 
+        protected void ResetStartTick() => startTick = -1;
+
+        protected void SetStartTick() => startTick = Find.TickManager.TicksGame;
+
+
 
         // State
         protected bool PowerOn => PowerTraderComp.PowerOn;
@@ -123,7 +128,7 @@ namespace GeneExtractorTiers.Extractors
         // Operation
         protected virtual void Cancel()
         {
-            startTick = -1;
+            ResetStartTick();
             selectedPawn = null;
             StopSustainer();
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
@@ -143,7 +148,7 @@ namespace GeneExtractorTiers.Extractors
         protected virtual void OnStop()
         {
             selectedPawn = null;
-            startTick = -1;
+            ResetStartTick();
             StopSustainer();
         }
 
@@ -237,7 +242,7 @@ namespace GeneExtractorTiers.Extractors
                 }
             }
             TicksRemaining = ExtractionTimeInTicks;
-            startTick = Find.TickManager.TicksGame;
+            SetStartTick();
         }
 
         protected virtual void CancelLoad()
@@ -248,7 +253,7 @@ namespace GeneExtractorTiers.Extractors
                 selectedPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
             selectedPawn = null;
-            startTick = -1;
+            ResetStartTick();
             StopSustainer();
         }
 
@@ -290,7 +295,7 @@ namespace GeneExtractorTiers.Extractors
 
                 if (innerContainer.TryAddOrTransfer(pawn))
                 {
-                    startTick = Find.TickManager.TicksGame;
+                    SetStartTick();
                     TicksRemaining = ExtractionTimeInTicks;
                 }
                 if (deselect)
