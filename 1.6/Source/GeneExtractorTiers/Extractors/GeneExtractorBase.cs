@@ -440,7 +440,9 @@ namespace GeneExtractorTiers.Extractors
             }
             else if (TargetSelected)
             {
-                stringBuilder.AppendLineIfNotEmpty().Append("WaitingForPawn".Translate(selectedPawn.Named("PAWN")).Resolve());
+                stringBuilder
+                    .AppendLineIfNotEmpty()
+                    .Append("WaitingForPawn".Translate(GetTargetName()).Resolve());
             }
 
             InspectStringAddResourceConsumption(stringBuilder);
@@ -455,6 +457,12 @@ namespace GeneExtractorTiers.Extractors
 
             return stringBuilder.ToString();
         }
+
+        protected virtual NamedArgument GetTargetName()
+        {
+            return selectedPawn.Named("PAWN");
+        }
+
 
 
         // Tick
