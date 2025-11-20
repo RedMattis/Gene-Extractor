@@ -260,13 +260,18 @@ namespace GeneExtractorTiers.Extractors
         protected virtual void CancelLoad()
         {
             innerContainer.TryDropAll(Position, base.Map, ThingPlaceMode.Near);
+            CancelEnterBuilding();
+            UnsetTarget();
+            ResetStartTick();
+            StopSustainer();
+        }
+
+        protected virtual void CancelEnterBuilding()
+        {
             if (selectedPawn.CurJobDef == JobDefOf.EnterBuilding)
             {
                 selectedPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
-            UnsetTarget();
-            ResetStartTick();
-            StopSustainer();
         }
 
         protected virtual void ActivateOverdrive()
