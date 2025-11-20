@@ -22,6 +22,7 @@ namespace GeneExtractorTiers.Extractors
         public PawnPosture HeldPawnPosture => PawnPosture.LayingOnGroundFaceUp;
         #endregion
 
+        protected virtual bool TargetSelected => selectedPawn != null;
 
         protected const float WorkingPowerUsageFactor = 1f;
 
@@ -364,7 +365,7 @@ namespace GeneExtractorTiers.Extractors
                 yield break;
             }
 
-            if (selectedPawn != null)
+            if (TargetSelected)
             {
                 yield return GizmoHelper.BuildGizmoCancelLoad(CancelLoad);
                 yield break;
