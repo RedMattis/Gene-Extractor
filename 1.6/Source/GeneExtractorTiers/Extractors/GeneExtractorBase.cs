@@ -83,6 +83,8 @@ namespace GeneExtractorTiers.Extractors
 
         protected void SetStartTick() => startTick = Find.TickManager.TicksGame;
 
+        protected virtual void UnsetTarget() => selectedPawn = null;
+
 
 
         // State
@@ -129,7 +131,7 @@ namespace GeneExtractorTiers.Extractors
         protected virtual void Cancel()
         {
             ResetStartTick();
-            selectedPawn = null;
+            UnsetTarget();
             StopSustainer();
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
         }
@@ -147,7 +149,7 @@ namespace GeneExtractorTiers.Extractors
 
         protected virtual void OnStop()
         {
-            selectedPawn = null;
+            UnsetTarget();
             ResetStartTick();
             StopSustainer();
         }
@@ -257,7 +259,7 @@ namespace GeneExtractorTiers.Extractors
             {
                 selectedPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
-            selectedPawn = null;
+            UnsetTarget();
             ResetStartTick();
             StopSustainer();
         }
