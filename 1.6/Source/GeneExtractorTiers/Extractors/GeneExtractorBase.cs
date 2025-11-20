@@ -228,21 +228,26 @@ namespace GeneExtractorTiers.Extractors
                     IntVec3 center = (def.hasInteractionCell ? InteractionCell : base.Position);
                     GenPlace.TryPlaceThing(genepack, center, Map, ThingPlaceMode.Near);
 
-                    if (Settings.RegrowTimeInTicks > 0)
-                    {
-                        Hediff hediff = containedPawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf.XenogermReplicating);
-                        if (hediff == null)
-                        {
-                            hediff = HediffMaker.MakeHediff(HediffDefOf.XenogermReplicating, containedPawn);
-                            containedPawn.health.AddHediff(hediff);
-                        }
-                        hediff.TryGetComp<HediffComp_Disappears>().ticksToDisappear = Settings.RegrowTimeInTicks;
-                    }
+                    SetPawnHediffXenogermReplicating(containedPawn);
                     Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, geneList.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
                 }
             }
             TicksRemaining = ExtractionTimeInTicks;
             SetStartTick();
+        }
+
+        protected virtual void SetPawnHediffXenogermReplicating(Pawn containedPawn)
+        {
+            if (Settings.RegrowTimeInTicks > 0)
+            {
+                Hediff hediff = containedPawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf.XenogermReplicating);
+                if (hediff == null)
+                {
+                    hediff = HediffMaker.MakeHediff(HediffDefOf.XenogermReplicating, containedPawn);
+                    containedPawn.health.AddHediff(hediff);
+                }
+                hediff.TryGetComp<HediffComp_Disappears>().ticksToDisappear = Settings.RegrowTimeInTicks;
+            }
         }
 
         protected virtual void CancelLoad()
