@@ -16,7 +16,7 @@ namespace GeneExtractorTiers.Extractors
         {
             get
             {
-                if (!base.Working)
+                if (!Working)
                 {
                     return 0f;
                 }
@@ -235,7 +235,7 @@ namespace GeneExtractorTiers.Extractors
             stringBuilder.AppendLineIfNotEmpty().Append("Nutrition".Translate()).Append(": ")
                 .Append(NutritionStored.ToStringByStyle(ToStringStyle.FloatMaxOne));
 
-            if (base.Working)
+            if (Working)
             {
                 stringBuilder.Append(" (-").Append("PerDay".Translate((NutritionConsumedPerDay * Settings.nutritionMultiplier).ToString("F1"))).Append(")");
             }
@@ -286,7 +286,7 @@ namespace GeneExtractorTiers.Extractors
             base.Tick();
             //innerContainer.DoTick();
 
-            if (base.Working)
+            if (Working)
             {
                 if (Tick_ResourceStarvation())
                     return;

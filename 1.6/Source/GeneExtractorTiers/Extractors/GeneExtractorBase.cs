@@ -111,7 +111,7 @@ namespace GeneExtractorTiers.Extractors
         protected override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             base.DrawAt(drawLoc, flip);
-            if (base.Working)
+            if (Working)
             {
                 if (TargetSelected)
                 {
@@ -375,7 +375,7 @@ namespace GeneExtractorTiers.Extractors
 
             yield return GizmoHelper.BuildGizmoOverdrive(OverchargeActive, ActivateOverdrive, DeactivateOverdrive);
 
-            if (base.Working)
+            if (Working)
             {
                 // Add dropdown with all genes available on the pawn.
                 if (CanTargetExtraction || Settings.allVatsCanTargetGenes)
@@ -430,7 +430,7 @@ namespace GeneExtractorTiers.Extractors
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(base.GetInspectString());
 
-            if (base.Working)
+            if (Working)
             {
                 if (TargetSelected && ContainsTarget)
                 {
@@ -449,7 +449,7 @@ namespace GeneExtractorTiers.Extractors
 
             InspectStringAddResourceConsumption(stringBuilder);
 
-            if (base.Working)
+            if (Working)
             {
                 if (TargetGene != null)
                 {
