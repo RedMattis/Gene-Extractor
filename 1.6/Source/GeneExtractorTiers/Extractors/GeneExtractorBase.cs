@@ -134,7 +134,7 @@ namespace GeneExtractorTiers.Extractors
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
         }
 
-        protected void Fail()
+        protected virtual void Fail()
         {
             if (innerContainer.Contains(selectedPawn))
             {
@@ -159,7 +159,7 @@ namespace GeneExtractorTiers.Extractors
             base.DeSpawn(mode);
         }
 
-        protected void ClearProgressBar()
+        protected virtual void ClearProgressBar()
         {
             if (progressBar != null)
             {
@@ -168,7 +168,7 @@ namespace GeneExtractorTiers.Extractors
             }
         }
 
-        private void Finish()
+        protected virtual void Finish()
         {
             if (GetContainedPawn() != null)
             {
