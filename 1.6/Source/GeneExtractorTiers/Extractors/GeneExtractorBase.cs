@@ -59,7 +59,7 @@ namespace GeneExtractorTiers.Extractors
         // Graphics
         private const float ProgressBarOffsetZ = -0.82f;
 
-        private Graphic TopGraphic
+        protected virtual Graphic TopGraphic
         {
             get
             {
