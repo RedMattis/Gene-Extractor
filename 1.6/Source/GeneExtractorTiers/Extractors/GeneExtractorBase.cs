@@ -121,7 +121,7 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Operation
-        protected void Cancel()
+        protected virtual void Cancel()
         {
             startTick = -1;
             selectedPawn = null;
@@ -140,7 +140,7 @@ namespace GeneExtractorTiers.Extractors
             OnStop();
         }
 
-        private void OnStop()
+        protected virtual void OnStop()
         {
             selectedPawn = null;
             startTick = -1;
