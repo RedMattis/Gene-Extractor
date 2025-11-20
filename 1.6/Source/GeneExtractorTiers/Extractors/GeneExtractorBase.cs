@@ -77,6 +77,8 @@ namespace GeneExtractorTiers.Extractors
         [Unsaved(false)] private Effecter bubbleEffecter;
         [Unsaved(false)] private Graphic cachedTopGraphic;
 
+        protected void StopSustainer() => sustainerWorking = null;
+
 
         // State
         protected bool PowerOn => PowerTraderComp.PowerOn;
@@ -123,7 +125,7 @@ namespace GeneExtractorTiers.Extractors
         {
             startTick = -1;
             selectedPawn = null;
-            sustainerWorking = null;
+            StopSustainer();
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
         }
 
@@ -142,12 +144,12 @@ namespace GeneExtractorTiers.Extractors
         {
             selectedPawn = null;
             startTick = -1;
-            sustainerWorking = null;
+            StopSustainer();
         }
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
-            sustainerWorking = null;
+            StopSustainer();
             ClearProgressBar();
             base.DeSpawn(mode);
         }
@@ -247,7 +249,7 @@ namespace GeneExtractorTiers.Extractors
             }
             selectedPawn = null;
             startTick = -1;
-            sustainerWorking = null;
+            StopSustainer();
         }
 
         protected virtual void ActivateOverdrive()
