@@ -325,6 +325,9 @@ namespace GeneExtractorTiers.Extractors
             return [];
         }
 
+        protected virtual Gizmo BuildInsertGizmo()
+            => GizmoHelper.BuildGizmoInsertPawn(BuildFloatMenuAvailablePawns, PowerOn);
+
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo gizmo in base.GetGizmos())
@@ -367,7 +370,7 @@ namespace GeneExtractorTiers.Extractors
                 yield break;
             }
 
-            yield return GizmoHelper.BuildGizmoInsertPawn(BuildFloatMenuAvailablePawns, PowerOn);
+            yield return BuildInsertGizmo();
         }
 
 
