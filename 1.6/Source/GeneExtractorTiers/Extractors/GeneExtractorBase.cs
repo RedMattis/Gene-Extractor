@@ -22,7 +22,7 @@ namespace GeneExtractorTiers.Extractors
         public PawnPosture HeldPawnPosture => PawnPosture.LayingOnGroundFaceUp;
         #endregion
 
-        protected virtual bool TargetSelected => selectedPawn != null;
+        public virtual bool TargetSelected => selectedPawn != null;
 
         protected const float WorkingPowerUsageFactor = 1f;
 
