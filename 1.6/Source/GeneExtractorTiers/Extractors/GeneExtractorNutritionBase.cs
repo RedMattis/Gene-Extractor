@@ -32,7 +32,7 @@ namespace GeneExtractorTiers.Extractors
         {
             get
             {
-                if (selectedPawn != null)
+                if (TargetSelected)
                 {
                     Hediff firstHediffOfDef = selectedPawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BioStarvation);
                     if (firstHediffOfDef != null)
@@ -247,7 +247,7 @@ namespace GeneExtractorTiers.Extractors
             {
                 return false;
             }
-            if (selectedPawn != null && selectedPawn != pawn)
+            if (TargetSelected && selectedPawn != pawn)
             {
                 return false;
             }
@@ -302,7 +302,7 @@ namespace GeneExtractorTiers.Extractors
 
         protected override bool Tick_ResourceStarvation()
         {
-            if (selectedPawn != null)
+            if (TargetSelected)
             {
                 float num = BiostarvationDailyOffset / 60000f * HediffDefOf.BioStarvation.maxSeverity;
                 Hediff firstHediffOfDef = selectedPawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BioStarvation);

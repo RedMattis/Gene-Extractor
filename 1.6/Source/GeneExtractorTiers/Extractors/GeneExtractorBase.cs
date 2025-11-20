@@ -109,7 +109,7 @@ namespace GeneExtractorTiers.Extractors
             base.DrawAt(drawLoc, flip);
             if (base.Working)
             {
-                if (selectedPawn != null)
+                if (TargetSelected)
                 {
                     if (innerContainer.Contains(selectedPawn))
                     {
@@ -413,7 +413,7 @@ namespace GeneExtractorTiers.Extractors
 
             if (base.Working)
             {
-                if (selectedPawn != null && innerContainer.Contains(selectedPawn))
+                if (TargetSelected && innerContainer.Contains(selectedPawn))
                 {
                     InspectStringAddTime(stringBuilder);
                     InspectStringAddPawn(stringBuilder);
@@ -421,7 +421,7 @@ namespace GeneExtractorTiers.Extractors
 
                 InspectStringAddResourceStarvation(stringBuilder);
             }
-            else if (selectedPawn != null)
+            else if (TargetSelected)
             {
                 stringBuilder.AppendLineIfNotEmpty().Append("WaitingForPawn".Translate(selectedPawn.Named("PAWN")).Resolve());
             }
