@@ -277,7 +277,7 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Pawn
-        protected Pawn GetContainedPawn()
+        protected virtual Pawn GetContainedPawn()
         {
             if (!innerContainer.Any(x => x is Pawn))
             {
