@@ -146,10 +146,15 @@ namespace GeneExtractorTiers.Extractors
             if (innerContainer.Contains(selectedPawn))
             {
                 innerContainer.TryDrop(selectedPawn, InteractionCell, base.Map, ThingPlaceMode.Near, 1, out var _);
-                Hediff firstHediffOfDef = selectedPawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BioStarvation);
-                selectedPawn.Kill(null, firstHediffOfDef);
+                KillPawnFromStarvation();
             }
             OnStop();
+        }
+
+        protected virtual void KillPawnFromStarvation()
+        {
+            Hediff firstHediffOfDef = selectedPawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BioStarvation);
+            selectedPawn.Kill(null, firstHediffOfDef);
         }
 
         protected virtual void OnStop()
