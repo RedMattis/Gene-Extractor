@@ -407,18 +407,18 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Inspect string build-out
-        protected void InspectStringAddTime(StringBuilder stringBuilder)
+        protected virtual void InspectStringAddTime(StringBuilder stringBuilder)
         {
             stringBuilder
                 .AppendLineIfNotEmpty()
                 .Append($"{"TimeLeft".Translate().CapitalizeFirst()}: {(TicksRemaining / 2500) + 1} {"HoursLower".Translate()}");
         }
 
-        protected void InspectStringAddPawn(StringBuilder stringBuilder)
+        protected virtual void InspectStringAddPawn(StringBuilder stringBuilder)
         {
             stringBuilder
                 .AppendLineIfNotEmpty()
-                .Append($"{"CasketContains".Translate()}: {selectedPawn.NameShortColored.Resolve()}, {selectedPawn.ageTracker.AgeBiologicalYears}");
+                .Append($"{"CasketContains".Translate()}: {GetContainedNameColorized()}, {GetContainedAge()}");
         }
 
         protected abstract void InspectStringAddResourceStarvation(StringBuilder stringBuilder);
@@ -464,6 +464,10 @@ namespace GeneExtractorTiers.Extractors
         {
             return selectedPawn.Named("PAWN");
         }
+
+        protected virtual string GetContainedNameColorized() => selectedPawn.NameShortColored.Resolve();
+
+        protected virtual int GetContainedAge() => selectedPawn.ageTracker.AgeBiologicalYears;
 
 
 
