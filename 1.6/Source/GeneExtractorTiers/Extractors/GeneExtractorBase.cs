@@ -164,6 +164,12 @@ namespace GeneExtractorTiers.Extractors
             StopSustainer();
         }
 
+        protected virtual void StartNewCycle()
+        {
+            TicksRemaining = ExtractionTimeInTicks;
+            SetStartTick();
+        }
+
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             StopSustainer();
@@ -244,7 +250,7 @@ namespace GeneExtractorTiers.Extractors
                     Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, geneList.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
                 }
             }
-            OnStop();
+            StartNewCycle();
         }
 
         protected virtual void SetPawnHediffXenogermReplicating(Pawn containedPawn)
