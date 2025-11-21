@@ -137,8 +137,8 @@ namespace GeneExtractorTiers.Extractors
         // Operation
         protected virtual void Cancel()
         {
-            OnStop();
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
+            OnStop();
         }
 
         protected virtual void Fail()
