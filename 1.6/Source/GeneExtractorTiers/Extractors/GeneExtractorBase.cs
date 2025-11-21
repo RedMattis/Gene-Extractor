@@ -472,6 +472,25 @@ namespace GeneExtractorTiers.Extractors
 
 
         // Tick
+        protected override void Tick()
+        {
+            base.Tick();
+            //innerContainer.DoTick();
+
+            if (Working)
+            {
+                if (Tick_ResourceStarvation())
+                    return;
+
+                Tick_HandleSustainer();
+                Tick_ConsumeResources();
+                Tick_GlowMote();
+            }
+
+            Tick_ConsumePower();
+            Tick_DoWork();
+        }
+
         protected abstract bool Tick_ResourceStarvation();
 
         protected void Tick_HandleSustainer()
