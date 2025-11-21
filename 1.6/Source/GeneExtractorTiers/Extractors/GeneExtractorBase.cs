@@ -137,8 +137,12 @@ namespace GeneExtractorTiers.Extractors
         // Operation
         protected virtual void Cancel()
         {
-            innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
             OnStop();
+        }
+
+        protected virtual void DropContents()
+        {
+            innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
         }
 
         protected virtual void Fail()
@@ -159,6 +163,7 @@ namespace GeneExtractorTiers.Extractors
 
         protected virtual void OnStop()
         {
+            DropContents();
             UnsetTarget();
             ResetStartTick();
             StopSustainer();
@@ -269,7 +274,6 @@ namespace GeneExtractorTiers.Extractors
 
         protected virtual void CancelLoad()
         {
-            innerContainer.TryDropAll(Position, base.Map, ThingPlaceMode.Near);
             CancelEnterBuilding();
             OnStop();
         }
