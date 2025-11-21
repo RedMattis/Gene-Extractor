@@ -137,9 +137,7 @@ namespace GeneExtractorTiers.Extractors
         // Operation
         protected virtual void Cancel()
         {
-            ResetStartTick();
-            UnsetTarget();
-            StopSustainer();
+            OnStop();
             innerContainer.TryDropAll(def.hasInteractionCell ? InteractionCell : Position, Map, ThingPlaceMode.Near);
         }
 
@@ -246,8 +244,7 @@ namespace GeneExtractorTiers.Extractors
                     Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, geneList.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
                 }
             }
-            TicksRemaining = ExtractionTimeInTicks;
-            SetStartTick();
+            OnStop();
         }
 
         protected virtual void SetPawnHediffXenogermReplicating(Pawn containedPawn)
@@ -268,9 +265,7 @@ namespace GeneExtractorTiers.Extractors
         {
             innerContainer.TryDropAll(Position, base.Map, ThingPlaceMode.Near);
             CancelEnterBuilding();
-            UnsetTarget();
-            ResetStartTick();
-            StopSustainer();
+            OnStop();
         }
 
         protected virtual void CancelEnterBuilding()
