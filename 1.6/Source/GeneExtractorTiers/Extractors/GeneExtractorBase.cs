@@ -179,7 +179,6 @@ namespace GeneExtractorTiers.Extractors
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             OnStop();
-            ClearProgressBar();
             base.DeSpawn(mode);
         }
 
