@@ -167,6 +167,7 @@ namespace GeneExtractorTiers.Extractors
             UnsetTarget();
             ResetStartTick();
             StopSustainer();
+            ClearProgressBar();
         }
 
         protected virtual void StartNewCycle()
@@ -177,7 +178,7 @@ namespace GeneExtractorTiers.Extractors
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
-            StopSustainer();
+            OnStop();
             ClearProgressBar();
             base.DeSpawn(mode);
         }
