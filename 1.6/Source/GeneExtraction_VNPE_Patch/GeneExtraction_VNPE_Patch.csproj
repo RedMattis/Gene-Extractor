@@ -43,8 +43,8 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="VNPE">
-			<HintPath Condition="Exists('..\..\..\..\..\..\..\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll')">..\..\..\..\..\..\..\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll</HintPath>
-			<HintPath Condition="Exists('\Program Files (x86)\Steam\steamapps\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll')">\Program Files (x86)\Steam\steamapps\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll</HintPath>
+			<HintPath Condition="Exists('..\..\..\..\..\..\..\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll')">..\..\..\..\..\..\..\workshop\content\294100\2920385763\1.6\Assemblies\VNPE.dll</HintPath>
+			<HintPath Condition="Exists('\Program Files (x86)\Steam\steamapps\workshop\content\294100\2920385763\1.4\Assemblies\VNPE.dll')">\Program Files (x86)\Steam\steamapps\workshop\content\294100\2920385763\1.6\Assemblies\VNPE.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
