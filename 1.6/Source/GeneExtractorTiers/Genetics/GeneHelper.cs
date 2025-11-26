@@ -5,9 +5,9 @@ using Verse;
 
 namespace GeneExtractorTiers.Genetics;
 
-public static class GeneHelper
+public class GeneHelper
 {
-    public static bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
+    public bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
     {
         return !pickableGenes.Any()
             || pickableGenes
@@ -19,7 +19,7 @@ public static class GeneHelper
                     );
     }
 
-    public static void AddBaselinerGenes(List<GeneDef> pickableGenes)
+    public void AddBaselinerGenes(List<GeneDef> pickableGenes)
     {
         // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
         List<string> baselinerGenes =
@@ -53,7 +53,7 @@ public static class GeneHelper
         pickableGenes.AddRange(geneDefs);
     }
 
-    public static Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
+    public Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
     {
         // Get the map this is placed in
         List<Thing> thingsOnMap = currentMap.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
@@ -104,7 +104,7 @@ public static class GeneHelper
         return geneLookup;
     }
 
-    public static List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn,
+    public List<GeneDef> BuildGeneListFromPawn(Pawn containedPawn,
         ref GeneDef targetGene, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish,
         float chanceMegaPack, float chanceMultiPack)
     {
