@@ -5,8 +5,9 @@ using Verse;
 
 namespace GeneExtractorTiers.Genetics;
 
-public class GeneHelper
+public class GeneListProvider : IBaselinerGeneListProvider
 {
+    #region IBaselinerGeneListProvider
     public bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
     {
         return !pickableGenes.Any()
@@ -19,7 +20,7 @@ public class GeneHelper
                     );
     }
 
-    public void AddBaselinerGenes(List<GeneDef> pickableGenes)
+    public IEnumerable<GeneDef> AddBaselinerGenes(IEnumerable<GeneDef> pickableGenes)
     {
         // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
         List<string> baselinerGenes =
@@ -50,8 +51,11 @@ public class GeneHelper
 
         // Get all defs
         var geneDefs = DefDatabase<GeneDef>.AllDefs.Where(x => baselinerGenes.Any(bg => x.defName.Contains(bg))).ToList();
-        pickableGenes.AddRange(geneDefs);
+        pickableGenes.Concat(geneDefs);
+
+        return pickableGenes;
     }
+    #endregion
 
     public Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
     {
