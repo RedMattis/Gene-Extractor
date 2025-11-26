@@ -110,7 +110,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
         }
     }
 
-    public IEnumerable<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite)
+    public List<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite)
     {
         var validPawnGenes = pawn.genes
             .GenesListForReading
@@ -121,7 +121,8 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
 
         //randomize order
         var pickableGenes = validPawnGenes
-            .OrderBy(x => Rand.Range(0, 1f));
+            .OrderBy(x => Rand.Range(0, 1f))
+            .ToList();
 
         return pickableGenes;
     }
