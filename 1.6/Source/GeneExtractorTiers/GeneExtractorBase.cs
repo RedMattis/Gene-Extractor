@@ -1,20 +1,16 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Verse;
-using UnityEngine;
-using Verse.Sound;
-using Verse.AI;
 using GeneExtractorTiers.Genetics;
+using HarmonyLib;
+using RimWorld;
+using UnityEngine;
+using Verse;
+using Verse.AI;
+using Verse.Sound;
 
 namespace GeneExtractorTiers
 {
-
     [StaticConstructorOnStartup]
     public abstract class Building_GeneExtractorTier : Building_Enterable, IStoreSettingsParent, IThingHolderWithDrawnPawn, IThingHolder
     {
@@ -28,7 +24,7 @@ namespace GeneExtractorTiers
 
         // Properties
         public virtual float SpeedMultiplier => 1;
-        public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1 );
+        public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1);
 
         private const float WorkingPowerUsageFactor = 1f;
         private const float BasePawnConsumedNutritionPerDay = 3f;
@@ -339,7 +335,7 @@ namespace GeneExtractorTiers
                 };
                 yield return command_Action;
 
-                
+
 
                 if (DebugSettings.ShowDevGizmos)
                 {
@@ -480,11 +476,11 @@ namespace GeneExtractorTiers
 
         private Pawn GetContainedPawn()
         {
-            if (!innerContainer.Any(x=>x is Pawn))
+            if (!innerContainer.Any(x => x is Pawn))
             {
                 return null;
             }
-            return (Pawn)innerContainer.Where(x=>x is Pawn).First();
+            return (Pawn)innerContainer.Where(x => x is Pawn).First();
         }
 
         public override AcceptanceReport CanAcceptPawn(Pawn pawn)
@@ -505,7 +501,7 @@ namespace GeneExtractorTiers
             {
                 return "NoPower".Translate().CapitalizeFirst();
             }
-            if (innerContainer.Any(x=>x is Pawn))
+            if (innerContainer.Any(x => x is Pawn))
             {
                 return "Occupied".Translate();
             }
@@ -632,7 +628,7 @@ namespace GeneExtractorTiers
                             ThingDefOf.Mote_VatGlowVertical
                         }
                     };
-                        BubbleEffecterPerRotation = new Dictionary<Rot4, EffecterDef>
+                    BubbleEffecterPerRotation = new Dictionary<Rot4, EffecterDef>
                     {
                         {
                             Rot4.South,
@@ -650,7 +646,7 @@ namespace GeneExtractorTiers
                             Rot4.North,
                             EffecterDefOf.Vat_Bubbles_North
                         }
-                    };  
+                    };
                 }
                 if (this.IsHashIntervalTick(132))
                 {
@@ -661,7 +657,6 @@ namespace GeneExtractorTiers
                     bubbleEffecter = BubbleEffecterPerRotation[base.Rotation].SpawnAttached(this, base.MapHeld);
                 }
                 bubbleEffecter.EffectTick(this, this);
-
             }
 
             if (this.IsHashIntervalTick(250))
@@ -772,7 +767,7 @@ namespace GeneExtractorTiers
                     targetGene, pickableGenes, pickableNewish, Settings.megaMultipackChance, Settings.multipackChance);
 
                 if (genesInPack.Count == 1)
-                    {
+                {
                     targetGene = null;
                 }
 
@@ -780,7 +775,7 @@ namespace GeneExtractorTiers
                 if (Rand.Chance(Settings.splitZeroCost))
                 {
                     // Create two packs, one with zero cost genes and one with the rest.
-                    var zeroCostGenes = genesInPack.Where(x => x.biostatArc == 0 && x.biostatMet == 0 && x.biostatCpx <=1).ToList();
+                    var zeroCostGenes = genesInPack.Where(x => x.biostatArc == 0 && x.biostatMet == 0 && x.biostatCpx <= 1).ToList();
                     if (zeroCostGenes.Any())
                     {
                         genesInPackListOfLists.Add(zeroCostGenes);
@@ -860,7 +855,5 @@ namespace GeneExtractorTiers
         public void Notify_SettingsChanged()
         {
         }
-
     }
-
 }
