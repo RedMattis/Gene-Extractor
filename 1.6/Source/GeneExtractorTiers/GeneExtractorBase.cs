@@ -756,14 +756,7 @@ namespace GeneExtractorTiers
                 Pawn containedPawn = GetContainedPawn();
 
                 var existingGenes = MapGeneListProvider.GetAllGenesOnMap(Map);
-                var validPawnGenes = containedPawn.genes.GenesListForReading.Where(x => x.def.biostatArc == 0 || CanExtractArchite).Select(x => x.def).ToList();
-
-                validPawnGenes.RemoveAll(x => AccessTools.Property(x.GetType(), "IsMutation") != null || AccessTools.Property(x.GetType(), "IsEvolution") != null);
-
-                // Check if the gene-category is "BS_DO_NOT"
-                validPawnGenes = validPawnGenes.Where(x => !x.displayCategory.defName.Contains("BS_DO_NOT")).ToList();
-
-                var pickableGenes = validPawnGenes.OrderBy(x => Rand.Range(0, 1f)).ToList();
+                var pickableGenes = PawnGeneListSelector.GetPawnGeneListForExtraction(containedPawn, CanExtractArchite);
 
                 // Check if baseliner
                 if (BaselinerGeneListProvider.IsBaselinerOrEquavalent(pickableGenes))
@@ -775,49 +768,14 @@ namespace GeneExtractorTiers
                 var almostNewGenes = pickableGenes.Where(x => !existingGenes.ContainsKey(x) || (existingGenes.ContainsKey(x) && existingGenes[x] == GeneState.Multipack)).ToList();
                 var pickableNewish = newGenes.Concat(almostNewGenes).ToHashSet().OrderBy(x => Rand.Range(0, 1f)).ToList();
 
-                List<GeneDef> genesInPack = [];
-                // Add initial Gene.
-                if (targetGene == null)
-                {
-                    if (pickableNewish.Any())
-                    {
-                        genesInPack.Add(pickableNewish.Pop());
-                    }
-                    else
-                    {
-                        genesInPack.Add(pickableGenes.Pop());
-                        Log.Message($"{containedPawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
-                    }
-                }
-                else
-                {
-                    genesInPack.Add(targetGene);
-                }
+                var genesInPack = PawnGeneListSelector.BuildGenePackGeneListFromPawn(containedPawn,
+                    targetGene, pickableGenes, pickableNewish, Settings.megaMultipackChance, Settings.multipackChance);
 
-                if (Rand.Chance(Settings.megaMultipackChance))
-                {
-                    // Generate huge multipack
-                    int numberOfGenes = Rand.Range(3, 16);
-                    while (numberOfGenes > 0 && pickableGenes.Any())
+                if (genesInPack.Count == 1)
                     {
-                        genesInPack.Add(pickableGenes.Pop());
-                        numberOfGenes--;
-                    }
-                }
-                else if (Rand.Chance(Settings.multipackChance))
-                {
-                    // Generate multipack
-                    int numberOfGenes = Rand.Range(1, 3);
-                    while (numberOfGenes > 0 && pickableGenes.Any())
-                    {
-                        genesInPack.Add(pickableGenes.Pop());
-                        numberOfGenes--;
-                    }
-                }
-                else
-                {
                     targetGene = null;
                 }
+
                 var genesInPackListOfLists = new List<List<GeneDef>>();
                 if (Rand.Chance(Settings.splitZeroCost))
                 {
