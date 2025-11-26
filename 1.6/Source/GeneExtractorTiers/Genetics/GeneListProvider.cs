@@ -60,7 +60,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
 
 
     #region IPawnGeneListSelector
-    public List<GeneDef> BuildGenePackGeneListFromPawn(Pawn containedPawn,
+    public List<GeneDef> BuildGenePackGeneListFromPawn(Pawn pawn,
         GeneDef targetGene, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish,
         float chanceMegaPack, float chanceMultiPack)
     {
@@ -76,7 +76,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
             else
             {
                 genesInPack.Add(pickableGenes.Pop());
-                Log.Message($"{containedPawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
+                Log.Message($"{pawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
             }
         }
         else
