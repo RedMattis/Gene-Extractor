@@ -10,7 +10,7 @@ public interface IPawnGeneListSelector
     /// <param name="pawn"><see cref="Pawn" /> whose genetics are being evaluated</param>
     /// <param name="canExtractArchite">Flag indicating whether archite genes should be included in the gene list</param>
     /// <returns>The collection of <see cref="GeneDef" /> that can be extracted from <paramref name="pawn" /></returns>
-    public List<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite);
+    List<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite);
 
     /// <summary>Builds the collection of <see cref="GeneDef" /> for <paramref name="pawn" /> that will go into a new genepack.</summary>
     /// <param name="pawn"><see cref="Pawn" /> whose genetics are being evaluated</param>
