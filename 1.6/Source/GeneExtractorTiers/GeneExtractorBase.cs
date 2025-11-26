@@ -259,7 +259,7 @@ namespace GeneExtractorTiers
 
             foreach (var gene in allPawnGenes)
             {
-                var existingGenes = GetAllGenesOnCurrentMap();
+                var existingGenes = MapGeneListProvider.GetAllGenesOnMap(Map);
                 if (existingGenes.ContainsKey(gene) && existingGenes[gene] == GeneState.SinglePack)
                 {
                     continue;
@@ -749,63 +749,13 @@ namespace GeneExtractorTiers
             //}
         }
 
-        public Dictionary<GeneDef, GeneState> GetAllGenesOnCurrentMap()
-        {
-            // Get the map this is placed in
-            List<Thing> thingsOnMap = Map.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
-
-            // i = 1 in singlepack. in multipcak.
-            Dictionary<GeneDef, GeneState> geneLookup = [];
-
-            foreach (Thing thing in thingsOnMap)
-            {
-                var genepackList = thing.TryGetComp<CompGenepackContainer>()?.ContainedGenepacks;
-                if (genepackList != null)
-                {
-                    foreach (var genePack in genepackList)
-                    {
-                        int genesInPack = genePack.GeneSet.GenesListForReading.Count;
-                        foreach (var geneDef in genePack.GeneSet.GenesListForReading)
-                        {
-                            if (genesInPack > 1 && !geneLookup.ContainsKey(geneDef))
-                            {
-                                geneLookup[geneDef] = GeneState.Multipack;
-                            }
-                            else if (genesInPack == 1)
-                            {
-                                geneLookup[geneDef] = GeneState.SinglePack;
-                            }
-                        }
-                    }
-                }
-                if (thing.TryGetComp<Comp_GeneNode>() is Comp_GeneNode gnComp)
-                {
-                    foreach(var geneDef in gnComp.Props.geneList)
-                    {
-                        geneLookup[geneDef] = GeneState.SinglePack;
-                    }
-                    foreach (var geneSet in gnComp.Props.geneSetList)
-                    {
-                        foreach (var geneDef in geneSet.geneList)
-                        {
-                            if (!geneLookup.ContainsKey(geneDef))
-                            {
-                                geneLookup[geneDef] = GeneState.Multipack;
-                            }
-                        }
-                    }
-                }
-            }
-            return geneLookup;
-        }
-
         private void Finish()
         {
             if (GetContainedPawn() != null)
             {
                 Pawn containedPawn = GetContainedPawn();
 
-                var existingGenes = GetAllGenesOnCurrentMap();
+                var existingGenes = MapGeneListProvider.GetAllGenesOnMap(Map);
                 var validPawnGenes = containedPawn.genes.GenesListForReading.Where(x => x.def.biostatArc == 0 || CanExtractArchite).Select(x => x.def).ToList();
 
                 validPawnGenes.RemoveAll(x => AccessTools.Property(x.GetType(), "IsMutation") != null || AccessTools.Property(x.GetType(), "IsEvolution") != null);
