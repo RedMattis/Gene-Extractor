@@ -6,10 +6,11 @@ using Verse;
 
 namespace GeneExtractorTiers.Genetics;
 
+/// <summary>Provider of lists of <see cref="GeneDef" /> that the extractors may evaluate</summary>
 public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider, IPawnGeneListSelector
 {
     #region IBaselinerGeneListProvider
-    public bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
+    public virtual bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
     {
         return !pickableGenes.Any()
             || pickableGenes
@@ -21,7 +22,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
                     );
     }
 
-    public IEnumerable<GeneDef> AddBaselinerGenes(IEnumerable<GeneDef> pickableGenes)
+    public virtual IEnumerable<GeneDef> AddBaselinerGenes(IEnumerable<GeneDef> pickableGenes)
     {
         // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
         List<string> baselinerGenes =
@@ -60,7 +61,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
 
 
     #region IPawnGeneListSelector
-    public List<GeneDef> BuildGenePackGeneListFromPawn(Pawn pawn,
+    public virtual List<GeneDef> BuildGenePackGeneListFromPawn(Pawn pawn,
         GeneDef targetGene, List<GeneDef> pickableGenes, List<GeneDef> pickableNewish,
         float chanceMegaPack, float chanceMultiPack)
     {
@@ -98,7 +99,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
         return genesInPack;
     }
 
-    private void AddGenesForMultipack(List<GeneDef> pickableGenes, List<GeneDef> genesInPack,
+    protected virtual void AddGenesForMultipack(List<GeneDef> pickableGenes, List<GeneDef> genesInPack,
         int minRange, int maxRange)
     {
         int numberOfGenes = Rand.Range(minRange, maxRange);
@@ -110,7 +111,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
         }
     }
 
-    public List<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite)
+    public virtual List<GeneDef> GetPawnGeneListForExtraction(Pawn pawn, bool canExtractArchite)
     {
         var validPawnGenes = pawn.genes
             .GenesListForReading
@@ -127,7 +128,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
         return pickableGenes;
     }
 
-    private bool IsMutationGene(GeneDef gene)
+    protected virtual bool IsMutationGene(GeneDef gene)
     {
         var geneType = gene.GetType();
 
@@ -138,7 +139,7 @@ public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider
 
 
     #region IMapGeneListProvider
-    public Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
+    public virtual Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
     {
         // Get the map this is placed in
         List<Thing> thingsOnMap = currentMap.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
