@@ -6,7 +6,7 @@ using Verse;
 
 namespace GeneExtractorTiers.Genetics;
 
-public class GeneListProvider : IBaselinerGeneListProvider, IPawnGeneListSelector
+public class GeneListProvider : IBaselinerGeneListProvider, IMapGeneListProvider, IPawnGeneListSelector
 {
     #region IBaselinerGeneListProvider
     public bool IsBaselinerOrEquavalent(IEnumerable<GeneDef> pickableGenes)
@@ -135,6 +135,8 @@ public class GeneListProvider : IBaselinerGeneListProvider, IPawnGeneListSelecto
     }
     #endregion
 
+
+    #region IMapGeneListProvider
     public Dictionary<GeneDef, GeneState> GetAllGenesOnMap(Map currentMap)
     {
         // Get the map this is placed in
@@ -164,12 +166,14 @@ public class GeneListProvider : IBaselinerGeneListProvider, IPawnGeneListSelecto
                     }
                 }
             }
+
             if (thing.TryGetComp<Comp_GeneNode>() is Comp_GeneNode gnComp)
             {
                 foreach (var geneDef in gnComp.Props.geneList)
                 {
                     geneLookup[geneDef] = GeneState.SinglePack;
                 }
+
                 foreach (var geneSet in gnComp.Props.geneSetList)
                 {
                     foreach (var geneDef in geneSet.geneList)
@@ -185,4 +189,5 @@ public class GeneListProvider : IBaselinerGeneListProvider, IPawnGeneListSelecto
 
         return geneLookup;
     }
+    #endregion
 }
