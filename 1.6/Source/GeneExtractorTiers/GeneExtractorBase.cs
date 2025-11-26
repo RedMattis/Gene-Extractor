@@ -1,19 +1,16 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Verse;
+using GeneExtractorTiers.Genetics;
+using HarmonyLib;
+using RimWorld;
 using UnityEngine;
-using Verse.Sound;
+using Verse;
 using Verse.AI;
+using Verse.Sound;
 
 namespace GeneExtractorTiers
 {
-
     [StaticConstructorOnStartup]
     public abstract class Building_GeneExtractorTier : Building_Enterable, IStoreSettingsParent, IThingHolderWithDrawnPawn, IThingHolder
     {
@@ -27,7 +24,7 @@ namespace GeneExtractorTiers
 
         // Properties
         public virtual float SpeedMultiplier => 1;
-        public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1 );
+        public int ExtractionTimeInTicks => (int)(Settings.extractionHours * 2500 / SpeedMultiplier) / (overchargeActive ? OverchargeSpeedFactor : 1);
 
         private const float WorkingPowerUsageFactor = 1f;
         private const float BasePawnConsumedNutritionPerDay = 3f;
@@ -92,6 +89,18 @@ namespace GeneExtractorTiers
                 }
                 return cachedTopGraphic;
             }
+        }
+
+        protected IPawnGeneListSelector PawnGeneListSelector;
+        protected IMapGeneListProvider MapGeneListProvider;
+        protected IBaselinerGeneListProvider BaselinerGeneListProvider;
+
+        public Building_GeneExtractorTier()
+        {
+            var geneListProvider = new GeneListProvider();
+            PawnGeneListSelector = geneListProvider;
+            MapGeneListProvider = geneListProvider;
+            BaselinerGeneListProvider = geneListProvider;
         }
 
         protected override void DrawAt(Vector3 drawLoc, bool flip = false)
@@ -239,14 +248,14 @@ namespace GeneExtractorTiers
         {
             var list = new List<FloatMenuOption>();
             var allPawnGenes = selectedPawn.genes.GenesListForReading.Select(x => x.def).ToList();
-            if (IsBaselinerOrEquavalent(allPawnGenes))
+            if (BaselinerGeneListProvider.IsBaselinerOrEquavalent(allPawnGenes))
             {
-                AddBaselinerGenes(allPawnGenes);
+                BaselinerGeneListProvider.AddBaselinerGenes(allPawnGenes);
             }
 
             foreach (var gene in allPawnGenes)
             {
-                var existingGenes = GetAllGenesOnCurrentMap();
+                var existingGenes = MapGeneListProvider.GetAllGenesOnMap(Map);
                 if (existingGenes.ContainsKey(gene) && existingGenes[gene] == GeneState.SinglePack)
                 {
                     continue;
@@ -326,7 +335,7 @@ namespace GeneExtractorTiers
                 };
                 yield return command_Action;
 
-                
+
 
                 if (DebugSettings.ShowDevGizmos)
                 {
@@ -467,11 +476,11 @@ namespace GeneExtractorTiers
 
         private Pawn GetContainedPawn()
         {
-            if (!innerContainer.Any(x=>x is Pawn))
+            if (!innerContainer.Any(x => x is Pawn))
             {
                 return null;
             }
-            return (Pawn)innerContainer.Where(x=>x is Pawn).First();
+            return (Pawn)innerContainer.Where(x => x is Pawn).First();
         }
 
         public override AcceptanceReport CanAcceptPawn(Pawn pawn)
@@ -492,7 +501,7 @@ namespace GeneExtractorTiers
             {
                 return "NoPower".Translate().CapitalizeFirst();
             }
-            if (innerContainer.Any(x=>x is Pawn))
+            if (innerContainer.Any(x => x is Pawn))
             {
                 return "Occupied".Translate();
             }
@@ -619,7 +628,7 @@ namespace GeneExtractorTiers
                             ThingDefOf.Mote_VatGlowVertical
                         }
                     };
-                        BubbleEffecterPerRotation = new Dictionary<Rot4, EffecterDef>
+                    BubbleEffecterPerRotation = new Dictionary<Rot4, EffecterDef>
                     {
                         {
                             Rot4.South,
@@ -637,7 +646,7 @@ namespace GeneExtractorTiers
                             Rot4.North,
                             EffecterDefOf.Vat_Bubbles_North
                         }
-                    };  
+                    };
                 }
                 if (this.IsHashIntervalTick(132))
                 {
@@ -648,7 +657,6 @@ namespace GeneExtractorTiers
                     bubbleEffecter = BubbleEffecterPerRotation[base.Rotation].SpawnAttached(this, base.MapHeld);
                 }
                 bubbleEffecter.EffectTick(this, this);
-
             }
 
             if (this.IsHashIntervalTick(250))
@@ -736,130 +744,38 @@ namespace GeneExtractorTiers
             //}
         }
 
-        public Dictionary<GeneDef, GeneState> GetAllGenesOnCurrentMap()
-        {
-            // Get the map this is placed in
-            List<Thing> thingsOnMap = Map.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.GenepackHolder));
-
-            // i = 1 in singlepack. in multipcak.
-            Dictionary<GeneDef, GeneState> geneLookup = [];
-
-            foreach (Thing thing in thingsOnMap)
-            {
-                var genepackList = thing.TryGetComp<CompGenepackContainer>()?.ContainedGenepacks;
-                if (genepackList != null)
-                {
-                    foreach (var genePack in genepackList)
-                    {
-                        int genesInPack = genePack.GeneSet.GenesListForReading.Count;
-                        foreach (var geneDef in genePack.GeneSet.GenesListForReading)
-                        {
-                            if (genesInPack > 1 && !geneLookup.ContainsKey(geneDef))
-                            {
-                                geneLookup[geneDef] = GeneState.Multipack;
-                            }
-                            else if (genesInPack == 1)
-                            {
-                                geneLookup[geneDef] = GeneState.SinglePack;
-                            }
-                        }
-                    }
-                }
-                if (thing.TryGetComp<Comp_GeneNode>() is Comp_GeneNode gnComp)
-                {
-                    foreach(var geneDef in gnComp.Props.geneList)
-                    {
-                        geneLookup[geneDef] = GeneState.SinglePack;
-                    }
-                    foreach (var geneSet in gnComp.Props.geneSetList)
-                    {
-                        foreach (var geneDef in geneSet.geneList)
-                        {
-                            if (!geneLookup.ContainsKey(geneDef))
-                            {
-                                geneLookup[geneDef] = GeneState.Multipack;
-                            }
-                        }
-                    }
-                }
-            }
-            return geneLookup;
-        }
-
         private void Finish()
         {
             if (GetContainedPawn() != null)
             {
                 Pawn containedPawn = GetContainedPawn();
 
-                var existingGenes = GetAllGenesOnCurrentMap();
-                var validPawnGenes = containedPawn.genes.GenesListForReading.Where(x => x.def.biostatArc == 0 || CanExtractArchite).Select(x => x.def).ToList();
-
-                validPawnGenes.RemoveAll(x => AccessTools.Property(x.GetType(), "IsMutation") != null || AccessTools.Property(x.GetType(), "IsEvolution") != null);
-
-                // Check if the gene-category is "BS_DO_NOT"
-                validPawnGenes = validPawnGenes.Where(x => !x.displayCategory.defName.Contains("BS_DO_NOT")).ToList();
-
-                var pickableGenes = validPawnGenes.OrderBy(x => Rand.Range(0, 1f)).ToList();
+                var existingGenes = MapGeneListProvider.GetAllGenesOnMap(Map);
+                var pickableGenes = PawnGeneListSelector.GetPawnGeneListForExtraction(containedPawn, CanExtractArchite);
 
                 // Check if baseliner
-                if (IsBaselinerOrEquavalent(pickableGenes))
+                if (BaselinerGeneListProvider.IsBaselinerOrEquavalent(pickableGenes))
                 {
-                    AddBaselinerGenes(pickableGenes);
+                    BaselinerGeneListProvider.AddBaselinerGenes(pickableGenes);
                 }
 
                 var newGenes = pickableGenes.Where(x => !existingGenes.ContainsKey(x)).ToList();
                 var almostNewGenes = pickableGenes.Where(x => !existingGenes.ContainsKey(x) || (existingGenes.ContainsKey(x) && existingGenes[x] == GeneState.Multipack)).ToList();
                 var pickableNewish = newGenes.Concat(almostNewGenes).ToHashSet().OrderBy(x => Rand.Range(0, 1f)).ToList();
 
-                List<GeneDef> genesInPack = [];
-                // Add initial Gene.
-                if (targetGene == null)
-                {
-                    if (pickableNewish.Any())
-                    {
-                        genesInPack.Add(pickableNewish.Pop());
-                    }
-                    else
-                    {
-                        genesInPack.Add(pickableGenes.Pop());
-                        Log.Message($"{containedPawn.Name} doesn't have any genes you don't have singles of. Adding a random gene from their geneset instead.");
-                    }
-                }
-                else
-                {
-                    genesInPack.Add(targetGene);
-                }
+                var genesInPack = PawnGeneListSelector.BuildGenePackGeneListFromPawn(containedPawn,
+                    targetGene, pickableGenes, pickableNewish, Settings.megaMultipackChance, Settings.multipackChance);
 
-                if (Rand.Chance(Settings.megaMultipackChance))
-                {
-                    // Generate huge multipack
-                    int numberOfGenes = Rand.Range(3, 16);
-                    while (numberOfGenes > 0 && pickableGenes.Any())
-                    {
-                        genesInPack.Add(pickableGenes.Pop());
-                        numberOfGenes--;
-                    }
-                }
-                else if (Rand.Chance(Settings.multipackChance))
-                {
-                    // Generate multipack
-                    int numberOfGenes = Rand.Range(1, 3);
-                    while (numberOfGenes > 0 && pickableGenes.Any())
-                    {
-                        genesInPack.Add(pickableGenes.Pop());
-                        numberOfGenes--;
-                    }
-                }
-                else
+                if (genesInPack.Count == 1)
                 {
                     targetGene = null;
                 }
+
                 var genesInPackListOfLists = new List<List<GeneDef>>();
                 if (Rand.Chance(Settings.splitZeroCost))
                 {
                     // Create two packs, one with zero cost genes and one with the rest.
-                    var zeroCostGenes = genesInPack.Where(x => x.biostatArc == 0 && x.biostatMet == 0 && x.biostatCpx <=1).ToList();
+                    var zeroCostGenes = genesInPack.Where(x => x.biostatArc == 0 && x.biostatMet == 0 && x.biostatCpx <= 1).ToList();
                     if (zeroCostGenes.Any())
                     {
                         genesInPackListOfLists.Add(zeroCostGenes);
@@ -903,21 +819,6 @@ namespace GeneExtractorTiers
             startTick = Find.TickManager.TicksGame;
         }
 
-        private static bool IsBaselinerOrEquavalent(List<GeneDef> pickableGenes)
-        {
-            return pickableGenes.All(x => x.defName.ToLower().Contains("skin") || x.defName.ToLower().Contains("hair")) || pickableGenes.Count == 0;
-        }
-
-        private static void AddBaselinerGenes(List<GeneDef> pickableGenes)
-        {
-            // Add the "Baseliner" set of genes. E.g. Human Headbone etc.
-            List<string> baselinerGenes = [ "GET_SleepRegular", "GET_ViolenceNormal", "GET_Learning_Normal", "GET_HumanLegs", "GET_AverageApperance", "GET_BodySizeNormal", "AG_NoWings", "AG_NoAntennae", "AG_NoTusks", "AG_NoLowerAntennae",
-                        "Jaw_Baseline", "Hands_Human", "Ears_Human", "Nose_Human", "Headbone_Human", "Voice_Human", "Body_Hulk", "Body_Standard", "Body_Thin", "Body_Fat", "GET_RegularAddiction", "GET_RegularBodyShape" ];
-            // Get all defs
-            var geneDefs = DefDatabase<GeneDef>.AllDefs.Where(x => baselinerGenes.Any(bg => x.defName.Contains(bg))).ToList();
-            pickableGenes.AddRange(geneDefs);
-        }
-
         public override void ExposeData()
         {
             base.ExposeData();
@@ -954,7 +855,5 @@ namespace GeneExtractorTiers
         public void Notify_SettingsChanged()
         {
         }
-
     }
-
 }
