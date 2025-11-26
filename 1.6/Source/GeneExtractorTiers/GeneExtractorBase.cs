@@ -10,6 +10,7 @@ using Verse;
 using UnityEngine;
 using Verse.Sound;
 using Verse.AI;
+using GeneExtractorTiers.Genetics;
 
 namespace GeneExtractorTiers
 {
@@ -92,6 +93,18 @@ namespace GeneExtractorTiers
                 }
                 return cachedTopGraphic;
             }
+        }
+
+        protected IPawnGeneListSelector PawnGeneListSelector;
+        protected IMapGeneListProvider MapGeneListProvider;
+        protected IBaselinerGeneListProvider BaselinerGeneListProvider;
+
+        public Building_GeneExtractorTier()
+        {
+            var geneListProvider = new GeneListProvider();
+            PawnGeneListSelector = geneListProvider;
+            MapGeneListProvider = geneListProvider;
+            BaselinerGeneListProvider = geneListProvider;
         }
 
         protected override void DrawAt(Vector3 drawLoc, bool flip = false)
