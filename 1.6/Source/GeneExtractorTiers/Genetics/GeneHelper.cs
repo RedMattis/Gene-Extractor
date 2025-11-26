@@ -2,7 +2,7 @@
 using System.Linq;
 using Verse;
 
-namespace GeneExtractorTiers.Utility;
+namespace GeneExtractorTiers.Genetics;
 
 public static class GeneHelper
 {
