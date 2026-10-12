@@ -10,52 +10,6 @@ using Verse;
 
 namespace GeneExtraction_VNPE_Patch
 {
-    //public static class VatPatch
-    //   {
-    //	public static float PatchTick(float ___containedNutrition, Building_GrowthVat __instance)
-    //	{
-    //		if (__instance.IsHashIntervalTick(250))
-    //		{
-    //			var compResource = __instance.GetComp<CompResource>();
-    //			if (compResource != null && compResource.PipeNet is PipeNet net)
-    //			{
-    //				var stored = net.Stored;
-    //				var needed = __instance.NutritionNeeded;
-    //				while (needed > 0.9f && stored > 0)
-    //				{
-    //					___containedNutrition += 0.9f;
-    //					net.DrawAmongStorage(1, net.storages);
-
-    //					stored--;
-    //					needed -= 0.9f;
-    //				}
-    //			}
-    //		}
-
-    //		return ___containedNutrition;
-    //	}
-    //}
-
-    //[HarmonyPatch(typeof(Build_GeneExtractorTier_II))]
-    //[HarmonyPatch("Tick", MethodType.Normal)]
-    //public static class Building_GeneVatII_Tick
-    //{
-    //	public static void Postfix(ref float ___containedNutrition, Building_GrowthVat __instance)
-    //       {
-    //           ___containedNutrition = VatPatch.PatchTick(___containedNutrition, __instance);
-    //       }
-    //   }
-
-    //[HarmonyPatch(typeof(Build_GeneExtractorTier_III))]
-    //[HarmonyPatch("Tick", MethodType.Normal)]
-    //public static class Building_GeneVatIII_Tick
-    //{
-    //	public static void Postfix(ref float ___containedNutrition, Building_GrowthVat __instance)
-    //	{
-    //		___containedNutrition = VatPatch.PatchTick(___containedNutrition, __instance);
-    //	}
-    //}
-
     [HarmonyPatch]
     public static class Building_GeneExtractorTier
     {
@@ -92,12 +46,6 @@ namespace GeneExtraction_VNPE_Patch
                     nutritionNeed -= 0.9f;
                 }
             }
-            //else
-            //{
-            //    Log.Warning("DEBUG!! PIPENET IS NULL!.");
-            //}
-
-            
         }
     }
 

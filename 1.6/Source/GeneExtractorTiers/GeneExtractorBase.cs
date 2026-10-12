@@ -578,6 +578,8 @@ namespace GeneExtractorTiers
                         Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.BioStarvation, selectedPawn);
                         hediff.Severity = num;
                         selectedPawn.health.AddHediff(hediff);
+
+                        Messages.Message("GET_Biostarvation".Translate(selectedPawn.LabelShort, selectedPawn.Named("PAWN")).CapitalizeFirst(), selectedPawn, MessageTypeDefOf.ThreatSmall, historical:false);
                     }
                 }
                 if (BiostarvationSeverityPercent >= 1f)
@@ -884,7 +886,8 @@ namespace GeneExtractorTiers
                 foreach (var geneList in genesInPackListOfLists)
                 {
                     Genepack genepack = (Genepack)ThingMaker.MakeThing(ThingDefOf.Genepack);
-                    genepack.Initialize(geneList);
+                    var distinct = geneList.Distinct().ToList();
+                    genepack.Initialize(distinct);
                     IntVec3 center = (def.hasInteractionCell ? InteractionCell : base.Position);
                     GenPlace.TryPlaceThing(genepack, center, Map, ThingPlaceMode.Near);
 
@@ -898,7 +901,7 @@ namespace GeneExtractorTiers
                         }
                         hediff.TryGetComp<HediffComp_Disappears>().ticksToDisappear = Settings.RegrowTimeInTicks;
                     }
-                    Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, geneList.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
+                    Messages.Message("GET_Extracted".Translate(containedPawn.Name.ToStringShort, distinct.Join(x => x.LabelCap)), MessageTypeDefOf.TaskCompletion);
                 }
             }
             ticksRemaining = ExtractionTimeInTicks;

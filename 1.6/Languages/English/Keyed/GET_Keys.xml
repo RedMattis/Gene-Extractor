@@ -10,4 +10,5 @@
 
   <GET_Extracted>Genepack extracted from {0} with: {1}</GET_Extracted>
   <GET_ExtractedMega>Mega Genepack extracted {0} with: {0}</GET_ExtractedMega>
+  <GET_Biostarvation>{0} is experiencing biostarvation!</GET_Biostarvation>
 </LanguageData>

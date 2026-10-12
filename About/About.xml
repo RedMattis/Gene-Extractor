@@ -5,6 +5,7 @@
 		<li>1.4</li>
 		<li>1.5</li>
 		<li>1.6</li>
+    <li>1.7</li>
 	</supportedVersions>
 	<modIconPath IgnoreIfNoMatchingField="True">BS_ModIcon</modIconPath>
 	<modDependencies>
@@ -25,6 +26,7 @@
 		<li>Ludeon.RimWorld.Ideology</li>
 		<li>Ludeon.RimWorld.Biotech</li>
 		<li>brrainz.harmony</li>
+    <li>Farxmai2.GeneBanksExapnded</li>
 	</loadAfter>
 	<packageId>RedMattis.GeneExtractor</packageId>
 	<description>This mod adds improved versions of the gene extractor which will extract genes from a pawn until you've extracted every gene available. One of the extractors can also extract archite genes.</description>

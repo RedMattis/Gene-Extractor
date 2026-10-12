@@ -35,7 +35,6 @@ namespace GeneExtractorTiers
         public CompProperties_GeneNode Props => (CompProperties_GeneNode)props;
 
         public ThingOwner<Thing> innerContainer = null;
-        public bool firstTimePlaced = true;
 
         public void GetChildHolders(List<IThingHolder> outChildren)
         {
@@ -62,19 +61,26 @@ namespace GeneExtractorTiers
         public override void PostPostMake()
         {
             base.PostPostMake();
-
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
             SetupContents();
-            if (firstTimePlaced && !respawningAfterLoad) FirstTimePlacedSetup();
+            if (parent?.Faction == Faction.OfPlayerSilentFail)
+            {
+                if (!respawningAfterLoad) FirstTimePlacedSetup();
+            }
         }
 
         private void FirstTimePlacedSetup()
         {
-            // Iterrate all factions, if the defname matches, add relation with the player faction.
+            if (GeneNodeGC.HasEverPlacedNode(parent.def.defName))
+            {
+                return;
+            }
+            GeneNodeGC.Instance.everPlacedNodes.Add(parent.def.defName);
+
             foreach (Faction faction in Find.FactionManager.AllFactions)
             {
                 if (faction.def.defName == Props.Faction)
@@ -87,8 +93,6 @@ namespace GeneExtractorTiers
             {
                 if (parent?.MapHeld?.IsPlayerHome == true && Props.Faction == "GET_DarkArchotech" && ModsConfig.AnomalyActive)
                 {
-                    // Spawn a shark of dark archotech.
-                    //<MessageShardDropped>{0} dropped a shard of dark archotechnology. You can collect and make use of it.</MessageShardDropped>
                     GenDrop.TryDropSpawn(ThingMaker.MakeThing(ThingDefOf.Shard), parent.PositionHeld, parent.MapHeld, ThingPlaceMode.Near, out var resultingThing);
                     Messages.Message("MessageShardDropped".Translate(parent.Label).CapitalizeFirst(), resultingThing, MessageTypeDefOf.PositiveEvent);
                 }
@@ -121,7 +125,24 @@ namespace GeneExtractorTiers
         {
             base.PostExposeData();
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
-            Scribe_Values.Look(ref firstTimePlaced, "firstTimePlaced", true);
+        }
+    }
+
+    public class GeneNodeGC : GameComponent
+    {
+        public static GeneNodeGC Instance { get; set; }
+        public List<string> everPlacedNodes = [];
+        public GeneNodeGC(Game game)
+        {
+            Instance = this;
+        }
+        public override void ExposeData()
+        {
+            Scribe_Collections.Look(ref everPlacedNodes, "everPlacedNodes", LookMode.Value);
+        }
+        public static bool HasEverPlacedNode(string defName)
+        {
+            return Instance.everPlacedNodes.Contains(defName);
         }
     }
 
