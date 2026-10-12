@@ -30,7 +30,7 @@ namespace GeneExtractorTiers
         public List<GeneDef> geneList = [];
     }
 
-    internal class Comp_GeneNode : ThingComp, IThingHolder
+    public class Comp_GeneNode : ThingComp, IThingHolder
     {
         public CompProperties_GeneNode Props => (CompProperties_GeneNode)props;
 

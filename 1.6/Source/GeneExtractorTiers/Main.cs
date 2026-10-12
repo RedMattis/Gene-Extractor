@@ -10,7 +10,7 @@ namespace GeneExtractorTiers
     /// Better Children Skill Learning multiplies XP by 3 for children.
     /// </summary>
     [StaticConstructorOnStartup]
-    internal class GeneExtractorMain : Mod
+    public class GeneExtractorMain : Mod
     {
         public static GeneExtractorMain instance = null;
         public static ExtractorTierSettings settings;
